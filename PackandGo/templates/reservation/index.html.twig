@@ -1,0 +1,38 @@
+{% extends 'back.html.twig' %}
+
+{% block title %} Les Reservations{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>DateDeb</th>
+                <th>DateFin</th>
+                <th>EtatGuide</th>
+                <th>Etat</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                <td>{{ reservation.dateDeb ? reservation.dateDeb|date('Y-m-d') : '' }}</td>
+                <td>{{ reservation.dateFin ? reservation.dateFin|date('Y-m-d') : '' }}</td>
+                <td>{{ reservation.etatGuide }}</td>
+                <td>{{ reservation.etat }}</td>
+                <td>
+                    <a href="{{ path('reservation_delete', {'id': reservation.idRes}) }}">Delete</a>
+                    <a href="{{ path('app_reservation_edit', {'idRes': reservation.idRes}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reservation_new') }}">Create new</a>
+{% endblock %}

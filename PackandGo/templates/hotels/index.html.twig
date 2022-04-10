@@ -1,0 +1,148 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Hotels Managment{% endblock %}
+
+{% block body %}
+
+
+ <!--**********************************
+        Content body start
+    ***********************************-->
+    <div class="content-body">
+        <div class="container-fluid">
+            <div class="row page-titles">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Add Hotel</a></li>
+                </ol>
+            </div>
+            <!-- row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+
+                        <div class="card-body">
+                            <div class="form-validation">
+                                <form class="needs-validation" novalidate >
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom01">Hotel Name
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <input type="text" class="form-control" id="validationCustom01"  placeholder="Enter the hotel name.." required>
+                                                    <div class="invalid-feedback">
+                                                        Please enter a hotel name.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom02">Hotel Category <span
+                                                            class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <input type="text" class="form-control" id="validationCustom02"  placeholder="Enter the Hotel Category.." required>
+                                                    <div class="invalid-feedback">
+                                                        Please enter a Hotel Category.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom03">Adress
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <textarea class="form-control" id="validationCustom04"  rows="4" placeholder="Enter the adress of the hotel.." required></textarea>
+                                                    <div class="invalid-feedback">
+                                                        Please enter a Adress.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom04">email <span
+                                                            class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <input type="text" class="form-control" id="validationCustom02"  placeholder="Your valid email.." required>
+                                                    <div class="invalid-feedback">
+                                                        Please enter a Email.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom08">Phone (TN)
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <input type="text" class="form-control" id="validationCustom08" placeholder="12-345-678" required>
+                                                    <div class="invalid-feedback">
+                                                        Please enter a phone no.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom07">Equipment
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <input type="text" class="form-control" id="validationCustom07"  placeholder="Enter equipment.." required>
+                                                    <div class="invalid-feedback">
+                                                        Please enter a url.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom11">Select Image
+                                                    <span class="text-danger">*</span>
+
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <div class="input-group mb-3">
+                                                        <div class="form-file">
+                                                            <input type="file" class="form-file-input form-control">
+                                                        </div>
+                                                        <span class="btn btn-primary btn-sm">Upload</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label"><a
+                                                            href="javascript:void()">Terms &amp; Conditions</a> <span
+                                                            class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-8">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="" id="validationCustom12" required>
+                                                        <label class="form-check-label" for="validationCustom12">
+                                                            Agree to terms and conditions
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <div class="col-lg-8 ms-auto">
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--**********************************
+        Content body end
+    ***********************************-->
+
+
+
+
+{% endblock %}
