@@ -14,29 +14,11 @@ class HotelsController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('back.html.twig', [
+        return $this->render('hotels/index.html.twig', [
             'controller_name' => 'HotelsController',
         ]);
     }
 
 
-    /**
-     * @Route("/hotels/newhotel", name="newHotel")
-     */
-    public function newEvent(Request $request): Response
-    {
-        $hotel = new hotel();
-        $form = $this->createForm(HotelFormType::class,$hotel);
-        $form->add('add',SubmitType::class);
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($hotel);
-            $em->flush();
-            return $this->redirectToRoute('HotelsList');
-        }
-        return $this->render('hotels/index.html.twig', [
-            'formHotel' => $form->createView(),
-        ]);
-    }
+
 }
