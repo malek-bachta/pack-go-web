@@ -42,7 +42,7 @@ class OffreController extends AbstractController
             $entityManager->persist($offre);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_offre_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_offre_index');
         }
 
         return $this->render('offre/new.html.twig', [
@@ -62,18 +62,19 @@ class OffreController extends AbstractController
     }
 
     /**
-     * @Route("/edit", name="app_offre_edit", methods={"GET", "POST"})
+     * @Route("/edit/{idOf}", name="app_offre_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, $idOf , EntityManagerInterface $entityManager): Response
     {
         $offre=new Offre();
+        $offre=$this->getDoctrine()->getRepository(offre::class)->find($idOf);
         $form = $this->createForm(OffreType::class, $offre);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_offre_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_offre_index');
         }
 
         return $this->render('offre/edit.html.twig', [
@@ -83,11 +84,12 @@ class OffreController extends AbstractController
     }
 
     /**
-     * @Route("/delete", name="app_offre_delete", methods={"POST"})
+     * @Route("/delete/{idOf}", name="app_offre_delete", methods={"POST"})
      */
-    public function delete(Request $request, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, $idOf, EntityManagerInterface $entityManager): Response
     {
         $offre=new Offre();
+        $offre=$this->getDoctrine()->getRepository(offre::class)->find($idOf);
         if ($this->isCsrfTokenValid('delete'.$offre->getIdOf(), $request->request->get('_token'))) {
             $entityManager->remove($offre);
             $entityManager->flush();
