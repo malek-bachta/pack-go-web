@@ -1,0 +1,21 @@
+
+{% extends 'back.html.twig' %}
+
+{% block title %}New Offre{% endblock %}
+{% block body %}
+<div class="content-body">
+    <div class="container-fluid">
+    <h1>Create new Offre</h1>
+
+        {{ form_start(form) }}
+        <input>{{ form_widget(form) }}</input>
+
+
+        <button class="btn-outline-primary">{{ button_label|default('Save') }}</button>
+        {{ form_end(form) }}
+
+
+        <a href="{{ path('app_offre_index') }}">Afficher</a>
+    </div>
+</div>
+        {% endblock %}
