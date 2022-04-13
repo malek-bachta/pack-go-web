@@ -218,7 +218,6 @@
     <!--**********************************
         Sidebar start
     ***********************************-->
-    {% block sidebar %} {% endblock %}
 
     <div class="dlabnav">
         <div class="dlabnav-scroll">
@@ -240,12 +239,12 @@
                 </li>
                 <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                         <i class="flaticon-050-info"></i>
-                        <span class="nav-text">malek</span>
+                        <span class="nav-text">Hotel Managment</span>
                     </a>
                     <ul aria-expanded="false">
-                        <li><a href="app-profile.html">Profile</a></li>
-                        <li><a href="post-details.html">Post Details</a></li>
-                        <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Email</a>
+                        <li><a href="{{ path('add_hotel')}}">Add Hotel</a></li>
+                        <li><a href="{{ path('list_hotels')}}">Hotel List</a></li>
+                       <!-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Email</a>
                             <ul aria-expanded="false">
                                 <li><a href="email-compose.html">Compose</a></li>
                                 <li><a href="email-inbox.html">Inbox</a></li>
@@ -263,7 +262,7 @@
                                 <li><a href="ecom-invoice.html">Invoice</a></li>
                                 <li><a href="ecom-customers.html">Customers</a></li>
                             </ul>
-                        </li>
+                        </li>-->
                     </ul>
                 </li>
                 <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">

@@ -5,12 +5,10 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Hotels
- *
- * @ORM\Table(name="hotels")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\HotelsRepository")
  */
 class Hotels
 {
@@ -32,7 +30,7 @@ class Hotels
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="hotel name is required")
      * @ORM\Column(name="nomH", type="string", length=255, nullable=false)
      */
     private $nomh;
