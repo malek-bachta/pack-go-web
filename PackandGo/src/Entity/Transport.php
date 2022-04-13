@@ -5,10 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Transport
- *
- * @ORM\Table(name="transport")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\TransportRepository")
  */
 class Transport
 {
