@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TransportRepository")
  */
@@ -20,14 +20,14 @@ class Transport
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="type", type="string", length=255, nullable=false)
      */
     private $type;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="nomagence", type="string", length=255, nullable=false)
      */
     private $nomagence;
@@ -41,14 +41,14 @@ class Transport
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="duree", type="string", length=255, nullable=false)
      */
     private $duree;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="destination", type="string", length=255, nullable=false)
      */
     private $destination;
