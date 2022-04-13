@@ -43,7 +43,6 @@ class TransportController extends AbstractController
     {
         $transport=new Transport();
         $form=$this->createForm(TransportFormType::class,$transport);
-        $form->add('Add', SubmitType::class);
         $form->handleRequest($req);
         if ($form->isSubmitted()) {
             $em = $this->getDoctrine()->getManager();
@@ -55,4 +54,38 @@ class TransportController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    /**
+     * @Route("/transport/update/{id}", name="update_transport")
+     */
+    public function updatetransport($id,Request $req): Response
+    {
+        $repo=$this->getDoctrine()->getRepository(transport::class);
+        $transport=$repo->find($id);
+        $form=$this->createForm(TransportFormType::class,$transport);
+        $form->add('Update', SubmitType::class);
+        $form->handleRequest($req);
+        if ($form->isSubmitted()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+            return $this->redirectToRoute("list_transport");
+        }
+        return $this->render('transport/ajouter.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
+
+    /**
+     * @Route("/transport/delete/{id}", name="delete_transport")
+     */
+    public function deleteHotel($id): Response
+    {    $repo=$this->getDoctrine()->getRepository(transport::class);
+        $transport=$repo->find($id);
+        $em=$this->getDoctrine()->getManager();
+        $em->remove($transport);
+        $em->flush();
+        return $this->redirectToRoute("list_transport");
+
+    }
+
+
+}

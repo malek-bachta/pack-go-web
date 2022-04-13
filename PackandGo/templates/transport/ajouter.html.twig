@@ -1,3 +1,112 @@
+{% extends 'back.html.twig' %}
 
-    {{ form(form) }}
+{% block title %}Transport Managment{% endblock %}
 
+{% block body %}
+
+
+    <!--**********************************
+           Content body start
+       ***********************************-->
+    <div class="content-body">
+        <div class="container-fluid">
+            <div class="row page-titles">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Add transport</a></li>
+                </ol>
+            </div>
+            <!-- row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        {{ form_start(form) }}
+                        <div class="card-body">
+                            <div class="form-validation">
+                                <form class="needs-validation" novalidate >
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom01">Transport Type
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    {{ form_row(form.type, {'attr' :{'class': "form-control"}}) }}
+                                                    <div class="invalid-feedback">
+                                                        Please enter a hotel type.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom02">Transport Name <span
+                                                            class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    {{ form_row(form.nomagence, {'attr' :{'class': "form-control"}}) }}
+
+                                                    <div class="invalid-feedback">
+                                                        Please enter a Transport name.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom03">Price
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    {{ form_row(form.prix, {'attr' :{'class': "form-control"}}) }}
+                                                    <div class="invalid-feedback">
+                                                        Please enter a Price.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom04">Duration <span
+                                                            class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    {{ form_row(form.duree, {'attr' :{'class': "form-control"}}) }}
+                                                    <div class="invalid-feedback">
+                                                        Please enter the Duration.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom07">Destination
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    {{ form_row(form.destination, {'attr' :{'class': "form-control"}}) }}
+                                                    <div class="invalid-feedback">
+                                                        Please enter the destination.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="mb-3 row">
+                                                <div class="col-lg-8 ms-auto">
+                                                    <button type="submit" class="btn btn-primary">Submit{{ form_end(form) }}</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--**********************************
+        Content body end
+    ***********************************-->
+
+
+
+
+{% endblock %}
