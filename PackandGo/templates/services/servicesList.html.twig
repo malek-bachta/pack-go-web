@@ -1,6 +1,6 @@
 {% extends 'back.html.twig' %}
 
-{% block title %}Hotels Managment{% endblock %}
+{% block title %}Service Managment{% endblock %}
 
 {% block body %}
 
@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row page-titles">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Hotel List</a></li>
+                    <li class="breadcrumb-item active"><a href="javascript:void(0)">service List</a></li>
                 </ol>
             </div>
             <!-- row -->
@@ -25,34 +25,32 @@
                                     <thead>
                                     <tr>
                                         <th style="width:80px;"><strong>#</strong></th>
-                                        <th><strong>HOTEL NAME</strong></th>
-                                        <th><strong>HOTEL CATEGORY</strong></th>
-                                        <th><strong>HOTEL ADRESS</strong></th>
-                                        <th><strong>E-MAIL</strong></th>
-                                        <th><strong>PHONE NUMBER</strong></th>
-                                        <th><strong>HOTEL EQUIPMENT</strong></th>
-                                        <th><strong>PHOTO</strong></th>
+                                        <th><strong>Formule</strong></th>
+                                        <th><strong>Price</strong></th>
+                                        <th><strong>Stay</strong></th>
+                                        <th><strong>Activity</strong></th>
+                                        <th><strong>State</strong></th>
+
                                         <th></th>
                                     </tr>
                                     </thead>
-                                    <tbody{% for h in list %}>
+                                    <tbody{% for S in liste %}>
                                     <tr>
-                                        <td><strong>{{ h.idh }}</strong></td>
-                                        <td><a class="dropdown" href="">{{ h.nomh }}</a> </td>
-                                        <td>{{ h.categorie }}</td>
-                                        <td>{{ h.adresse }}</td>
-                                        <td>{{ h.email }}</td>
-                                        <td>{{ h.telh }}</td>
-                                        <td>{{ h.equipement }}</td>
-                                        <td>{{ h.image }}</td>
+                                        <td><strong>{{ S.idS }}</strong></td>
+                                        <td><a class="dropdown" href="">{{ S.formule }}</a> </td>
+                                        <td>{{ S.prix }}</td>
+                                        <td>{{ S.sejours }}</td>
+                                        <td>{{ S.activite }}</td>
+                                        <td>{{ S.etat }}</td>
+
                                         <td>
                                             <div class="dropdown">
                                                 <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">
                                                     <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="{{ path('update_hotel', {'idh':h.idh}) }}">Edit</a>
-                                                    <a class="dropdown-item" href="{{ path('delete_hotel', {'idh':h.idh}) }}">Delete</a>
+                                                    <a class="dropdown-item" href="{{ path('update_service', {'idS':S.idS}) }}">Edit</a>
+                                                    <a class="dropdown-item" href="{{ path('delete_service', {'idS':S.idS}) }}">Delete</a>
                                                 </div>
                                             </div>
                                         </td>

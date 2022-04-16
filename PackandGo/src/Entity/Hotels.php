@@ -30,21 +30,21 @@ class Hotels
 
     /**
      * @var string
-     * @Assert\NotBlank(message="hotel name is required")
+     * @Assert\NotBlank
      * @ORM\Column(name="nomH", type="string", length=255, nullable=false)
      */
     private $nomh;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="categorie", type="string", length=24, nullable=false)
      */
     private $categorie;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="adresse", type="string", length=34, nullable=false)
      */
     private $adresse;
@@ -58,6 +58,7 @@ class Hotels
 
     /**
      * @var int
+
      *
      * @ORM\Column(name="telH", type="integer", nullable=false)
      */
@@ -65,27 +66,20 @@ class Hotels
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="equipement", type="string", length=255, nullable=false)
      */
     private $equipement;
 
     /**
      * @var string|null
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
     private $image;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Services::class, mappedBy="idhotel")
-     */
-    private $services;
 
-    public function __construct()
-    {
-        $this->services = new ArrayCollection();
-    }
+
 
     public function getIdh(): ?int
     {
@@ -188,35 +182,7 @@ class Hotels
         return $this;
     }
 
-    /**
-     * @return Collection<int, Services>
-     */
-    public function getServices(): Collection
-    {
-        return $this->services;
-    }
 
-    public function addService(Services $service): self
-    {
-        if (!$this->services->contains($service)) {
-            $this->services[] = $service;
-            $service->setIdhotel($this);
-        }
-
-        return $this;
-    }
-
-    public function removeService(Services $service): self
-    {
-        if ($this->services->removeElement($service)) {
-            // set the owning side to null (unless already changed)
-            if ($service->getIdhotel() === $this) {
-                $service->setIdhotel(null);
-            }
-        }
-
-        return $this;
-    }
 
 
 }

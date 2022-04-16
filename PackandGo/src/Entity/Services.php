@@ -3,12 +3,11 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
- * Services
- *
- * @ORM\Table(name="services", indexes={@ORM\Index(name="fk_contact", columns={"id_hotel"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ServicesRepository")
  */
 class Services
 {
@@ -23,35 +22,35 @@ class Services
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="formule", type="string", length=50, nullable=false)
      */
     private $formule;
 
     /**
      * @var float
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="prix", type="float", precision=10, scale=0, nullable=false)
      */
     private $prix;
 
     /**
      * @var string|null
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="sejours", type="string", length=50, nullable=true)
      */
     private $sejours;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="activite", type="string", length=50, nullable=false)
      */
     private $activite;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="etat", type="string", length=50, nullable=false)
      */
     private $etat;
@@ -63,11 +62,7 @@ class Services
      */
     private $idHotel;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=hotels::class, inversedBy="services")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $idhotel;
+
 
     public function getIds(): ?int
     {
