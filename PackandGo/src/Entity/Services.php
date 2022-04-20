@@ -56,11 +56,11 @@ class Services
     private $etat;
 
     /**
-     * @var int|null
-     *
-     * @ORM\Column(name="id_hotel", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity=Hotels::class, inversedBy="services")
+     * @ORM\JoinColumn(nullable=false, name="id_hotel", referencedColumnName="idH")
      */
-    private $idHotel;
+    private $id_hotel;
+
 
 
 
@@ -129,17 +129,21 @@ class Services
         return $this;
     }
 
-    public function getIdHotel(): ?int
+    public function getIdHotel(): ?Hotels
     {
-        return $this->idHotel;
+        return $this->id_hotel;
     }
 
-    public function setIdHotel(?int $idHotel): self
+    public function setIdHotel(?Hotels $id_hotel): self
     {
-        $this->idHotel = $idHotel;
+        $this->id_hotel = $id_hotel;
 
         return $this;
     }
+
+
+
+
 
 
 }

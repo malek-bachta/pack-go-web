@@ -19,7 +19,7 @@ class Hotels
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idh;
+    private $idH;
 
     /**
      * @var int|null
@@ -78,12 +78,23 @@ class Hotels
      */
     private $image;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Services::class, mappedBy="id_hotel")
+     */
+    private $services;
 
-
-
-    public function getIdh(): ?int
+    public function __construct()
     {
-        return $this->idh;
+        $this->services = new ArrayCollection();
+    }
+
+
+
+
+
+    public function getIdH(): ?int
+    {
+        return $this->idH;
     }
 
     public function getIdContacth(): ?int
@@ -181,6 +192,40 @@ class Hotels
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Services>
+     */
+    public function getServices(): Collection
+    {
+        return $this->services;
+    }
+
+
+
+    public function addService(Services $service): self
+    {
+        if (!$this->services->contains($service)) {
+            $this->services[] = $service;
+            $service->setIdHotel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeService(Services $service): self
+    {
+        if ($this->services->removeElement($service)) {
+            // set the owning side to null (unless already changed)
+            if ($service->getIdHotel() === $this) {
+                $service->setIdHotel(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 
 
 

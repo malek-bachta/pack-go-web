@@ -18,10 +18,23 @@ class HotelsController extends AbstractController
     /**
      * @Route("/hotels", name="app_hotels")
      */
-    public function index(): Response
+    public function showHotels(): Response
     {
+        $repo = $this->getDoctrine()
+            ->getRepository(Hotels::class);
+        $liste=$repo->findAll();
+        return $this->render('hotels/hotelListFront.html.twig', [
+            'list' => $liste,
+        ]);
+    }
+    /**
+     * @Route("/", name="home")
+     */
+    public function showsHotels(): Response
+    {
+
         return $this->render('hotels/index.html.twig', [
-            'controller_name' => 'HotelsController',
+
         ]);
     }
 
