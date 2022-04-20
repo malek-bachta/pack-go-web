@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Reservation
  *
- * @ORM\Table(name="reservation", indexes={@ORM\Index(name="id_u", columns={"id_u"}), @ORM\Index(name="id_trasp", columns={"id_trasp"})})
+ * @ORM\Table(name="reservation", indexes={@ORM\Index(name="id_trasp", columns={"id_trasp"}), @ORM\Index(name="id_u", columns={"id_u"})})
  * @ORM\Entity
  */
 class Reservation
@@ -50,16 +50,6 @@ class Reservation
     private $etat;
 
     /**
-     * @var \User
-     *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_u", referencedColumnName="id_c")
-     * })
-     */
-    private $idU;
-
-    /**
      * @var \Transport
      *
      * @ORM\ManyToOne(targetEntity="Transport")
@@ -69,82 +59,15 @@ class Reservation
      */
     private $idTrasp;
 
-    public function getIdRes(): ?int
-    {
-        return $this->idRes;
-    }
-
-    public function getDateDeb(): ?\DateTimeInterface
-    {
-        return $this->dateDeb;
-    }
-
-    public function setDateDeb(\DateTimeInterface $dateDeb): self
-    {
-        $this->dateDeb = $dateDeb;
-
-        return $this;
-    }
-
-    public function getDateFin(): ?\DateTimeInterface
-    {
-        return $this->dateFin;
-    }
-
-    public function setDateFin(\DateTimeInterface $dateFin): self
-    {
-        $this->dateFin = $dateFin;
-
-        return $this;
-    }
-
-    public function getEtatGuide(): ?int
-    {
-        return $this->etatGuide;
-    }
-
-    public function setEtatGuide(?int $etatGuide): self
-    {
-        $this->etatGuide = $etatGuide;
-
-        return $this;
-    }
-
-    public function getEtat(): ?string
-    {
-        return $this->etat;
-    }
-
-    public function setEtat(string $etat): self
-    {
-        $this->etat = $etat;
-
-        return $this;
-    }
-
-    public function getIdU(): ?User
-    {
-        return $this->idU;
-    }
-
-    public function setIdU(?User $idU): self
-    {
-        $this->idU = $idU;
-
-        return $this;
-    }
-
-    public function getIdTrasp(): ?Transport
-    {
-        return $this->idTrasp;
-    }
-
-    public function setIdTrasp(?Transport $idTrasp): self
-    {
-        $this->idTrasp = $idTrasp;
-
-        return $this;
-    }
+    /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_u", referencedColumnName="id_c")
+     * })
+     */
+    private $idU;
 
 
 }

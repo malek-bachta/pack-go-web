@@ -15,7 +15,7 @@ class Packs
     /**
      * @var int
      *
-     * @ORM\Column(name="id_pack", type="integer", nullable=false)
+     * @ORM\Column(name="idPack", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -24,7 +24,7 @@ class Packs
     /**
      * @var string
      *
-     * @ORM\Column(name="nom_pack", type="string", length=100, nullable=false)
+     * @ORM\Column(name="nomPack", type="string", length=100, nullable=false)
      */
     private $nomPack;
 
@@ -57,87 +57,122 @@ class Packs
     private $destination;
 
     /**
-     * @var int|null
+     * @var int
      *
-     * @ORM\Column(name="budget_pack", type="integer", nullable=true)
+     * @ORM\Column(name="budget_pack", type="integer", nullable=false)
      */
     private $budgetPack;
 
+    /**
+     * @return int
+     */
     public function getIdPack(): ?int
     {
         return $this->idPack;
     }
 
+    /**
+     * @param int $idPack
+     */
+    public function setIdPack(int $idPack): void
+    {
+        $this->idPack = $idPack;
+    }
+
+    /**
+     * @return string
+     */
     public function getNomPack(): ?string
     {
         return $this->nomPack;
     }
 
-    public function setNomPack(string $nomPack): self
+    /**
+     * @param string $nomPack
+     */
+    public function setNomPack(string $nomPack): void
     {
         $this->nomPack = $nomPack;
-
-        return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getTexte(): ?string
     {
         return $this->texte;
     }
 
-    public function setTexte(string $texte): self
+    /**
+     * @param string $texte
+     */
+    public function setTexte(string $texte): void
     {
         $this->texte = $texte;
-
-        return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getService(): ?string
     {
         return $this->service;
     }
 
-    public function setService(string $service): self
+    /**
+     * @param string $service
+     */
+    public function setService(string $service): void
     {
         $this->service = $service;
-
-        return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getGuide(): ?string
     {
         return $this->guide;
     }
 
-    public function setGuide(string $guide): self
+    /**
+     * @param string $guide
+     */
+    public function setGuide(string $guide): void
     {
         $this->guide = $guide;
-
-        return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getDestination(): ?string
     {
         return $this->destination;
     }
 
-    public function setDestination(string $destination): self
+    /**
+     * @param string $destination
+     */
+    public function setDestination(string $destination): void
     {
         $this->destination = $destination;
-
-        return $this;
     }
 
+    /**
+     * @return int
+     */
     public function getBudgetPack(): ?int
     {
         return $this->budgetPack;
     }
 
-    public function setBudgetPack(?int $budgetPack): self
+    /**
+     * @param int $budgetPack
+     */
+    public function setBudgetPack(int $budgetPack): void
     {
         $this->budgetPack = $budgetPack;
-
-        return $this;
     }
 
 

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Reservationh
  *
- * @ORM\Table(name="reservationh", indexes={@ORM\Index(name="idu", columns={"idu"}), @ORM\Index(name="idhotel", columns={"idhotel"})})
+ * @ORM\Table(name="reservationh", indexes={@ORM\Index(name="idhotel", columns={"idhotel"}), @ORM\Index(name="idu", columns={"idu"})})
  * @ORM\Entity
  */
 class Reservationh
@@ -68,83 +68,6 @@ class Reservationh
      * })
      */
     private $idu;
-
-    public function getIdreh(): ?int
-    {
-        return $this->idreh;
-    }
-
-    public function getDated(): ?\DateTimeInterface
-    {
-        return $this->dated;
-    }
-
-    public function setDated(\DateTimeInterface $dated): self
-    {
-        $this->dated = $dated;
-
-        return $this;
-    }
-
-    public function getDatef(): ?\DateTimeInterface
-    {
-        return $this->datef;
-    }
-
-    public function setDatef(\DateTimeInterface $datef): self
-    {
-        $this->datef = $datef;
-
-        return $this;
-    }
-
-    public function getEtatService(): ?int
-    {
-        return $this->etatService;
-    }
-
-    public function setEtatService(int $etatService): self
-    {
-        $this->etatService = $etatService;
-
-        return $this;
-    }
-
-    public function getEtat(): ?string
-    {
-        return $this->etat;
-    }
-
-    public function setEtat(string $etat): self
-    {
-        $this->etat = $etat;
-
-        return $this;
-    }
-
-    public function getIdhotel(): ?Hotels
-    {
-        return $this->idhotel;
-    }
-
-    public function setIdhotel(?Hotels $idhotel): self
-    {
-        $this->idhotel = $idhotel;
-
-        return $this;
-    }
-
-    public function getIdu(): ?User
-    {
-        return $this->idu;
-    }
-
-    public function setIdu(?User $idu): self
-    {
-        $this->idu = $idu;
-
-        return $this;
-    }
 
 
 }

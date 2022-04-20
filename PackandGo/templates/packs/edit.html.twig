@@ -1,0 +1,17 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Edit Packs{% endblock %}
+
+{% block body %}
+<div class="content-body">
+    <div class="container-fluid">
+    <h1>Edit Packs</h1>
+
+    {{ include('packs/_form.html.twig', {'button_label': 'Update'}) }}
+
+        <button class="btn-google"><a href="{{ path('app_packs_index') }}">back to list</a></button>
+
+    </div>
+</div>
+
+{% endblock %}

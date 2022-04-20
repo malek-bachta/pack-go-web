@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Packs{% endblock %}
+
+{% block body %}
+    <h1>Packs</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdPack</th>
+                <td>{{ pack.idPack }}</td>
+            </tr>
+            <tr>
+                <th>NomPack</th>
+                <td>{{ pack.nomPack }}</td>
+            </tr>
+            <tr>
+                <th>Texte</th>
+                <td>{{ pack.texte }}</td>
+            </tr>
+            <tr>
+                <th>Service</th>
+                <td>{{ pack.service }}</td>
+            </tr>
+            <tr>
+                <th>Guide</th>
+                <td>{{ pack.guide }}</td>
+            </tr>
+            <tr>
+                <th>Destination</th>
+                <td>{{ pack.destination }}</td>
+            </tr>
+            <tr>
+                <th>BudgetPack</th>
+                <td>{{ pack.budgetPack }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_packs_index') }}">back to list</a>
+
+    <a href="{{ path('app_packs_edit', {'idPack': pack.idPack}) }}">edit</a>
+
+    {{ include('packs/_delete_form.html.twig') }}
+{% endblock %}

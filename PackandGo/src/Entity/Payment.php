@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Payment
  *
- * @ORM\Table(name="payment", indexes={@ORM\Index(name="id_hotel", columns={"id_hotel"}), @ORM\Index(name="id_user", columns={"id_user"})})
+ * @ORM\Table(name="payment", indexes={@ORM\Index(name="id_user", columns={"id_user"}), @ORM\Index(name="id_hotel", columns={"id_hotel"})})
  * @ORM\Entity
  */
 class Payment
@@ -54,59 +54,6 @@ class Payment
      * })
      */
     private $idUser;
-
-    public function getIdP(): ?int
-    {
-        return $this->idP;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    public function getSomme(): ?float
-    {
-        return $this->somme;
-    }
-
-    public function setSomme(float $somme): self
-    {
-        $this->somme = $somme;
-
-        return $this;
-    }
-
-    public function getIdHotel(): ?Hotels
-    {
-        return $this->idHotel;
-    }
-
-    public function setIdHotel(?Hotels $idHotel): self
-    {
-        $this->idHotel = $idHotel;
-
-        return $this;
-    }
-
-    public function getIdUser(): ?User
-    {
-        return $this->idUser;
-    }
-
-    public function setIdUser(?User $idUser): self
-    {
-        $this->idUser = $idUser;
-
-        return $this;
-    }
 
 
 }
