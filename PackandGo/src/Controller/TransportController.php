@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Transport;
 use App\Form\TransportFormType;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,11 +40,16 @@ class TransportController extends AbstractController
     /**
      * @Route("/transport/show1", name="list_transport1")
      */
-    public function ShowTransport(): Response
+    public function ShowTransport(Request $request , PaginatorInterface $paginator): Response
     {
         $repo = $this->getDoctrine()
             ->getRepository(Transport::class);
         $liste=$repo->findAll();
+        $liste =$paginator->paginate(
+            $repo,
+            $request->query->getInt('page',1),
+            4
+        );
         return $this->render('transport/flight.html.twig', [
             'list' => $liste,
         ]);
