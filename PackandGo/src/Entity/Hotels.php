@@ -79,14 +79,12 @@ class Hotels
     private $image;
 
     /**
-     * @ORM\OneToMany(targetEntity=Services::class, mappedBy="id_hotel")
+     * @ORM\ManyToOne(targetEntity=Services::class, inversedBy="hotels")
+     * @ORM\JoinColumn(nullable=false, name="Service", referencedColumnName="idS")
      */
-    private $services;
+    private $service;
 
-    public function __construct()
-    {
-        $this->services = new ArrayCollection();
-    }
+
 
 
 
@@ -193,37 +191,19 @@ class Hotels
         return $this;
     }
 
-    /**
-     * @return Collection<int, Services>
-     */
-    public function getServices(): Collection
+    public function getService(): ?Services
     {
-        return $this->services;
+        return $this->service;
     }
 
-
-
-    public function addService(Services $service): self
+    public function setService(?Services $service): self
     {
-        if (!$this->services->contains($service)) {
-            $this->services[] = $service;
-            $service->setIdHotel($this);
-        }
+        $this->service = $service;
 
         return $this;
     }
 
-    public function removeService(Services $service): self
-    {
-        if ($this->services->removeElement($service)) {
-            // set the owning side to null (unless already changed)
-            if ($service->getIdHotel() === $this) {
-                $service->setIdHotel(null);
-            }
-        }
 
-        return $this;
-    }
 
 
 

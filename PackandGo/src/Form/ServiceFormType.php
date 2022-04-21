@@ -19,9 +19,7 @@ class ServiceFormType extends AbstractType
             ->add('sejours')
             ->add('activite')
             ->add('etat')
-            ->add('id_hotel', EntityType::class, [
-                'class' => Hotels::class,
-                'choice_label' => 'nomH', ]);
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

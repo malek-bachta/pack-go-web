@@ -33,6 +33,9 @@ class HotelFormType extends AbstractType
                     'mimeTypesMessage' => 'Please upload a valid image',
                 ])
             ]])
+            ->add('service', EntityType::class, [
+                'class' => Services::class,
+                'choice_label' => 'formule', ])
 
 
 

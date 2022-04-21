@@ -206,6 +206,7 @@
     <div class="container">
         <div class="row rt-breadcump-height with-logn-height">
             <div class="col-12">
+                {% block title %}
                 <div class="breadcrumbs-content">
                     <h3>Flight</h3>
                     <div class="breadcrumbs">
@@ -216,6 +217,7 @@
 
                     </div><!-- /.breadcrumbs -->
                 </div><!-- /.breadcrumbs-content -->
+                {% endblock %}
             </div><!-- /.col-12 -->
         </div><!-- /.row -->
     </div><!-- /.container -->
@@ -224,11 +226,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 mx-auto">
-                    <div class="rt-banner-searchbox flight-search wow fade-in-bottom" data-wow-duration="1s" data-wow-delay="1s">
-                        <div class="tab-content" id="myTabContent">
-                            {% block search %}{% endblock %}
-                        </div>
-                    </div><!-- /.rt-banner-searchbox -->
+                        {% block search %}{% endblock %}
+                    <!-- /.rt-banner-searchbox -->
                     {% block choose %} {% endblock %}
                 </div><!-- /.col-lg-10 -->
             </div><!-- /.row -->
@@ -378,7 +377,7 @@
             <div class="row">
                 <div class="col-lg-6 text-center text-lg-left">
                     <div class="copy-text wow fade-in-bottom" data-wow-duration="1s">
-                        Copyright © 2018.All Rights Reserved By <a href="#">Emigrar</a>
+                        Copyright © 2022.All Rights Reserved By <a href="#">PACK&GO</a>
                     </div><!-- /.copy-text -->
                 </div><!-- /.col-lg-6 -->
                 <div class="col-lg-6 text-center text-lg-right">

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -56,10 +58,15 @@ class Services
     private $etat;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Hotels::class, inversedBy="services")
-     * @ORM\JoinColumn(nullable=false, name="id_hotel", referencedColumnName="idH")
+     * @ORM\OneToMany(targetEntity=Hotels::class, mappedBy="service")
      */
-    private $id_hotel;
+    private $hotels;
+
+    public function __construct()
+    {
+        $this->hotels = new ArrayCollection();
+    }
+
 
 
 
@@ -129,17 +136,36 @@ class Services
         return $this;
     }
 
-    public function getIdHotel(): ?Hotels
+    /**
+     * @return Collection<int, Hotels>
+     */
+    public function getHotels(): Collection
     {
-        return $this->id_hotel;
+        return $this->hotels;
     }
 
-    public function setIdHotel(?Hotels $id_hotel): self
+    public function addHotel(Hotels $hotel): self
     {
-        $this->id_hotel = $id_hotel;
+        if (!$this->hotels->contains($hotel)) {
+            $this->hotels[] = $hotel;
+            $hotel->setService($this);
+        }
 
         return $this;
     }
+
+    public function removeHotel(Hotels $hotel): self
+    {
+        if ($this->hotels->removeElement($hotel)) {
+            // set the owning side to null (unless already changed)
+            if ($hotel->getService() === $this) {
+                $hotel->setService(null);
+            }
+        }
+
+        return $this;
+    }
+
 
 
 

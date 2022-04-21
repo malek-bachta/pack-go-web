@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Hotels;
-
+use App\Entity\Services;
 
 
 class HotelsController extends AbstractController
@@ -34,6 +34,22 @@ class HotelsController extends AbstractController
         );
         return $this->render('hotels/hotelListFront.html.twig', [
             'list' => $liste,
+        ]);
+    }
+
+
+    /**
+     * @Route("/hotels/details/{idh}", name="details")
+     */
+    public function details($idh)
+    {
+        $repo=$this->getDoctrine()
+            ->getRepository(Hotels::class);
+        $hotels=$repo->find($idh);
+
+        return $this->render('hotels/hoteldetails.html.twig', [
+            'hotel'=>$hotels
+
         ]);
     }
 
@@ -68,27 +84,27 @@ class HotelsController extends AbstractController
     /**
      * @Route("/hotels/add", name="add_hotel")
      */
-     public function addHotel(Request $req)
-     {
-         $hotels=new Hotels();
-         $form=$this->createForm(HotelFormType::class,$hotels);
-         $form->handleRequest($req);
-         if ($form->isSubmitted() && $form->isValid()) {
-             $file = $form->get("image")->getData();
-             $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
-             $file->move(
-                 $this->getParameter('$uploads'),
-                 $fileName);
-             $hotels->setImage($fileName);
-             $em = $this->getDoctrine()->getManager();
-             $em->persist($hotels);
-             $em->flush();
-             return $this->redirectToRoute("list_hotels");
-         }
-         return $this->render('hotels/addH.html.twig', [
-                 'form' => $form->createView(),
-         ]);
-     }
+    public function addHotel(Request $req)
+    {
+        $hotels=new Hotels();
+        $form=$this->createForm(HotelFormType::class,$hotels);
+        $form->handleRequest($req);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get("image")->getData();
+            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+            $file->move(
+                $this->getParameter('$uploads'),
+                $fileName);
+            $hotels->setImage($fileName);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($hotels);
+            $em->flush();
+            return $this->redirectToRoute("list_hotels");
+        }
+        return $this->render('hotels/addH.html.twig', [
+            'hotel' => $form->createView(),
+        ]);
+    }
 
     /**
      * @return string
@@ -121,7 +137,7 @@ class HotelsController extends AbstractController
             return $this->redirectToRoute("list_hotels");
         }
         return $this->render('hotels/addH.html.twig', [
-            'form' => $form->createView(),
+            'hotel' => $form->createView(),
         ]);
     }
 

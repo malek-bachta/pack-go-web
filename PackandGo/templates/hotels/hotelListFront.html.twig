@@ -1,44 +1,59 @@
 {% extends 'front2.html.twig' %}
+{% block title %}
+<div class="breadcrumbs-content">
+    <h3>Hotels</h3>
+    <div class="breadcrumbs">
+        <span class="divider"><i class="icofont-home"></i></span>
+        <a href="#" title="Home">Home</a>
+        <span class="divider"><i class="icofont-simple-right"></i></span>
+        Hotel
+    </div><!-- /.breadcrumbs -->
+</div><!-- /.breadcrumbs-content -->
+{% endblock %}
 {% block search %}
-<div class="tab-pane  show active" id="rt-item_a_second" role="tabpanel" aria-labelledby="rt-item_a_second">
-    <form action="#">
-        <div class="rt-radio-group">
-            <div class="dropdown form-check-inline rt-searchlink">
-                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink24"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Guestes per room
-                </a>
+<div class="rt-banner-searchbox flight-search wow fade-in-bottom" data-wow-duration="1s" data-wow-delay="1s">
+ <div class="tab-content" id="myTabContent">
+    <div class="tab-pane  show active" id="rt-item_a_second" role="tabpanel" aria-labelledby="rt-item_a_second">
+        <form action="#">
+            <div class="rt-radio-group">
+                <div class="dropdown form-check-inline rt-searchlink">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink24"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Guestes per room
+                    </a>
 
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink24">
-                    <a class="dropdown-item" href="#">Room one</a>
-                    <a class="dropdown-item" href="#">Room two</a>
-                    <a class="dropdown-item" href="#">Room three</a>
-                </div>
-            </div><!-- ./dropdown -->
-        </div><!-- /.radio-group -->
-        <div class="rt-input-group">
-            <div class="single-input  col-rt-in-3">
-                <input type="text" class="form-control" placeholder="destination">
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink24">
+                        <a class="dropdown-item" href="#">Room one</a>
+                        <a class="dropdown-item" href="#">Room two</a>
+                        <a class="dropdown-item" href="#">Room three</a>
+                    </div>
+                </div><!-- ./dropdown -->
+            </div><!-- /.radio-group -->
+            <div class="rt-input-group">
+                <div class="single-input  col-rt-in-3">
+                    <input type="text" class="form-control" placeholder="destination">
 
-            </div><!-- /.single-input -->
-            <div class="single-input  col-rt-in-3">
-                <input type="text" class="form-control rt-date-picker has-icon"
+                </div><!-- /.single-input -->
+                <div class="single-input  col-rt-in-3">
+                    <input type="text" class="form-control rt-date-picker has-icon"
                        placeholder="Depart">
-                <span class="input-iconbadge"><i class="icofont-ui-calendar"></i></span>
-            </div><!-- /.single-input -->
-            <div class="single-input  col-rt-in-3">
-                <input type="text" class="form-control rt-date-picker has-icon"
-                       placeholder="Return">
-                <span class="input-iconbadge"><i class="icofont-ui-calendar"></i></span>
-            </div><!-- /.single-input -->
-            <div class="single-input  col-rt-in-3">
-                <input type="text" class="form-control" placeholder="keywords(optional)">
-            </div><!-- /.single-input -->
-            <div class="single-input  col-rt-in-1">
-                <button type="submit"><i class="icofont-search"></i></button>
-            </div><!-- /.single-input -->
-        </div><!-- /.rt-input-group -->
-    </form><!-- ./ form -->
+                    <span class="input-iconbadge"><i class="icofont-ui-calendar"></i></span>
+                </div><!-- /.single-input -->
+                <div class="single-input  col-rt-in-3">
+                    <input type="text" class="form-control rt-date-picker has-icon"
+                           placeholder="Return">
+                    <span class="input-iconbadge"><i class="icofont-ui-calendar"></i></span>
+                </div><!-- /.single-input -->
+                <div class="single-input  col-rt-in-3">
+                    <input type="text" class="form-control" placeholder="keywords(optional)">
+                </div><!-- /.single-input -->
+                <div class="single-input  col-rt-in-1">
+                    <button type="submit"><i class="icofont-search"></i></button>
+                </div><!-- /.single-input -->
+            </div><!-- /.rt-input-group -->
+        </form><!-- ./ form -->
+    </div>
+ </div>
 </div>
 {% endblock %}
 {% block choose%}
@@ -290,7 +305,7 @@
                     <div class="box-style__1 rt-mb-30">
                         <div class="hotel-inner-content row">
                             <div class="hotel-thumb col-md-3 mb-4 mb-md-0">
-                                <div class="hotel-bg rtbgprefix-cover" style="background-image: url({{ asset('uploads/' ~ h.image) }})"></div>
+                                    <div class="hotel-bg rtbgprefix-cover" style="background-image: url({{ asset('uploads/' ~ h.image) }})"></div>
                             </div><!-- /.hotel-thumb -->
                             <div class="hotel-text col-md-9">
                                 <div class="top mb-4 mb-md-0">
@@ -308,7 +323,7 @@
                                     </div><!-- /.left- -->
                                     <div class="right text-left text-md-right mt-4 mt-md-0">
                                         <span class="d-block">From USD</span>
-                                        <span class="d-block">$364</span>
+                                        <span class="d-block">${{ h.service.prix }}</span>
                                     </div><!-- /.right -->
                                 </div><!-- /.middle-text -->
                                 <div class="footer-elements d-flex justify-content-md-between align-items-center">
@@ -324,7 +339,7 @@
                                         <span data-tippy="time"><img src="{{ asset('front/assets/images/all-img/hottel-cion-9.png') }}" alt="hotel iamge"  draggable="false"></span>
                                     </div><!-- /.left -->
                                     <div class="right">
-                                        <a href="hotel-3.html" class="rt-btn rt-gradient pill rt-sm2 text-uppercase">View Details</a>
+                                        <a href="{{ path('details', {'idh':h.idh}) }}" class="rt-btn rt-gradient pill rt-sm2 text-uppercase">View Details</a>
                                     </div><!-- /.right -->
                                 </div><!-- /.footer-elements -->
                             </div><!-- /.hotel-text -->
