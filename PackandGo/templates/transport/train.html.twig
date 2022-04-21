@@ -1,0 +1,44 @@
+
+{% extends 'front2.html.twig' %}
+{% block bodytrain %}
+{% for t in list  %}
+            {% if (t.type=="train") %}
+<div class="flight-list-box rt-mb-30 row">
+    <div class="col-md-3 mb-md-0 mb-4">
+        <div class="d-flex justify-content-between">
+            <span class="rt-medium f-size-24 primary-color">G102</span>
+            <ul class="rt-llist train-timeline">
+                <li class="f-size-18 text-424">
+                    06:26
+                </li>
+                <li class="f-size-18 text-424">
+                    12:29
+                </li>
+            </ul>
+        </div>
+    </div><!-- /.col-md-4 -->
+    <div class="col-md-3 mb-md-0 mb-4 text-center text-md-right train-border">
+        <span class="f-size-12 text-424"><i class="icofont-clock-time rt-mr-3"></i>{{ t.duree }}</span>
+    </div><!-- /.col-md-4 -->
+    <div class="col-md-6">
+        <div class="d-flex justify-content-between rt-mb-15">
+            <span class="f-size-14 text-333">2nd Class</span>
+            <span class="f-size-24 text-primary rt-semiblod title-font"><span class="f-size-12">$</span>25.33</span>
+            <a href="train-2.html" class="rt-btn rt-gradient rt-sm3 pill text-uppercase">Book</a>
+        </div><!-- /.d-flex  -->
+        <div class="d-flex justify-content-between rt-mb-15">
+            <span class="f-size-14 text-333">2nd Class</span>
+            <span class="f-size-24 text-primary rt-semiblod title-font"><span class="f-size-12">$</span>55.33</span>
+            <a href="train-2.html" class="rt-btn rt-gradient rt-sm3 pill text-uppercase">Book</a>
+        </div><!-- /.d-flex  -->
+        <div class="d-flex justify-content-between">
+            <span class="f-size-14 text-333">2nd Class</span>
+            <span class="f-size-24 text-primary rt-semiblod title-font"><span class="f-size-12">$</span>55.33</span>
+            <a href="train-2.html" class="rt-btn rt-gradient rt-sm3 pill text-uppercase">Book</a>
+        </div><!-- /.d-flex  -->
+    </div><!-- /.col-md-4 -->
+</div><!-- /.flight-box -->
+
+            {% endif %}
+{% endfor %}
+{% endblock %}

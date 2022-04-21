@@ -13,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class TransportController extends AbstractController
 {
     /**
-     * @Route("/transport", name="app_transport")
+     * @Route("/", name="app_transport")
      */
     public function index(): Response
     {
@@ -26,7 +26,7 @@ class TransportController extends AbstractController
     /**
      * @Route("/transport/show", name="list_transport")
      */
-   public function getAllClasses(): Response
+   public function getAllTransport(): Response
     {
         $repo = $this->getDoctrine()
             ->getRepository(Transport::class);
@@ -35,6 +35,47 @@ class TransportController extends AbstractController
             'list' => $liste,
         ]);
     }
+
+    /**
+     * @Route("/transport/show1", name="list_transport1")
+     */
+    public function ShowTransport(): Response
+    {
+        $repo = $this->getDoctrine()
+            ->getRepository(Transport::class);
+        $liste=$repo->findAll();
+        return $this->render('transport/flight.html.twig', [
+            'list' => $liste,
+        ]);
+    }
+    /**
+     * @Route("/transport/show2", name="list_transport2")
+     */
+    public function ShowTranspor2(): Response
+    {
+        $repo = $this->getDoctrine()
+            ->getRepository(Transport::class);
+        $liste=$repo->findAll();
+        return $this->render('transport/cars.html.twig', [
+            'list' => $liste,
+        ]);
+    }
+
+    /**
+     * @Route("/transport/show3", name="list_transport3")
+     */
+    public function ShowTranspor3(): Response
+    {
+        $repo = $this->getDoctrine()
+            ->getRepository(Transport::class);
+        $liste=$repo->findAll();
+        return $this->render('transport/train.html.twig', [
+            'list' => $liste,
+        ]);
+    }
+
+
+
     /**
      * @Route("/transport/add", name="add_transport")
      */

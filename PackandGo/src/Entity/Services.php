@@ -63,11 +63,7 @@ class Services
      */
     private $idHotel;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=hotels::class, inversedBy="services")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $idhotel;
+
 
     public function getIds(): ?int
     {
@@ -130,18 +126,6 @@ class Services
     public function setEtat(string $etat): self
     {
         $this->etat = $etat;
-
-        return $this;
-    }
-
-    public function getIdHotel(): ?int
-    {
-        return $this->idHotel;
-    }
-
-    public function setIdHotel(?int $idHotel): self
-    {
-        $this->idHotel = $idHotel;
 
         return $this;
     }

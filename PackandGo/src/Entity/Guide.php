@@ -50,6 +50,11 @@ class Guide
      */
     private $prix;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Transport::class, mappedBy="guideid", cascade={"persist", "remove"})
+     */
+    private $transportid;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -99,6 +104,23 @@ class Guide
     public function setPrix(float $prix): self
     {
         $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getTransportid(): ?Transport
+    {
+        return $this->transportid;
+    }
+
+    public function setTransportid(Transport $transportid): self
+    {
+        // set the owning side of the relation if necessary
+        if ($transportid->getGuideid() !== $this) {
+            $transportid->setGuideid($this);
+        }
+
+        $this->transportid = $transportid;
 
         return $this;
     }

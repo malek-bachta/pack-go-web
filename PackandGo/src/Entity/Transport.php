@@ -53,6 +53,12 @@ class Transport
      */
     private $destination;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Guide::class, inversedBy="transportid", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $guideid;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -114,6 +120,18 @@ class Transport
     public function setDestination(string $destination): self
     {
         $this->destination = $destination;
+
+        return $this;
+    }
+
+    public function getGuideid(): ?guide
+    {
+        return $this->guideid;
+    }
+
+    public function setGuideid(guide $guideid): self
+    {
+        $this->guideid = $guideid;
 
         return $this;
     }

@@ -79,15 +79,9 @@ class Hotels
      */
     private $image;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Services::class, mappedBy="idhotel")
-     */
-    private $services;
 
-    public function __construct()
-    {
-        $this->services = new ArrayCollection();
-    }
+
+
 
     public function getIdh(): ?int
     {
@@ -190,35 +184,7 @@ class Hotels
         return $this;
     }
 
-    /**
-     * @return Collection<int, Services>
-     */
-    public function getServices(): Collection
-    {
-        return $this->services;
-    }
 
-    public function addService(Services $service): self
-    {
-        if (!$this->services->contains($service)) {
-            $this->services[] = $service;
-            $service->setIdhotel($this);
-        }
-
-        return $this;
-    }
-
-    public function removeService(Services $service): self
-    {
-        if ($this->services->removeElement($service)) {
-            // set the owning side to null (unless already changed)
-            if ($service->getIdhotel() === $this) {
-                $service->setIdhotel(null);
-            }
-        }
-
-        return $this;
-    }
 
 
 }
