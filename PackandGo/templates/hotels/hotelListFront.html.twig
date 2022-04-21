@@ -1,4 +1,46 @@
 {% extends 'front2.html.twig' %}
+{% block search %}
+<div class="tab-pane  show active" id="rt-item_a_second" role="tabpanel" aria-labelledby="rt-item_a_second">
+    <form action="#">
+        <div class="rt-radio-group">
+            <div class="dropdown form-check-inline rt-searchlink">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink24"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Guestes per room
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink24">
+                    <a class="dropdown-item" href="#">Room one</a>
+                    <a class="dropdown-item" href="#">Room two</a>
+                    <a class="dropdown-item" href="#">Room three</a>
+                </div>
+            </div><!-- ./dropdown -->
+        </div><!-- /.radio-group -->
+        <div class="rt-input-group">
+            <div class="single-input  col-rt-in-3">
+                <input type="text" class="form-control" placeholder="destination">
+
+            </div><!-- /.single-input -->
+            <div class="single-input  col-rt-in-3">
+                <input type="text" class="form-control rt-date-picker has-icon"
+                       placeholder="Depart">
+                <span class="input-iconbadge"><i class="icofont-ui-calendar"></i></span>
+            </div><!-- /.single-input -->
+            <div class="single-input  col-rt-in-3">
+                <input type="text" class="form-control rt-date-picker has-icon"
+                       placeholder="Return">
+                <span class="input-iconbadge"><i class="icofont-ui-calendar"></i></span>
+            </div><!-- /.single-input -->
+            <div class="single-input  col-rt-in-3">
+                <input type="text" class="form-control" placeholder="keywords(optional)">
+            </div><!-- /.single-input -->
+            <div class="single-input  col-rt-in-1">
+                <button type="submit"><i class="icofont-search"></i></button>
+            </div><!-- /.single-input -->
+        </div><!-- /.rt-input-group -->
+    </form><!-- ./ form -->
+</div>
+{% endblock %}
 {% block choose%}
     <ul class=" nav-item nav serachnavs wow fade-in-bottom" id="rtMultiTab" role="tablist" data-wow-duration="1.5s"
         data-wow-delay="1.5s">
@@ -9,7 +51,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="#hotel">
+            <a class="nav-link active" href="{{ path('app_hotels') }}">
 
                 <i class="icofont-hotel"></i>
                 <span>Hotels</span>
@@ -248,7 +290,7 @@
                     <div class="box-style__1 rt-mb-30">
                         <div class="hotel-inner-content row">
                             <div class="hotel-thumb col-md-3 mb-4 mb-md-0">
-                                <div class="hotel-bg rtbgprefix-cover" style="background-image: url({{ asset('front/assets/images/hotel/port-1.jpg') }})"></div>
+                                <div class="hotel-bg rtbgprefix-cover" style="background-image: url({{ asset('uploads/' ~ h.image) }})"></div>
                             </div><!-- /.hotel-thumb -->
                             <div class="hotel-text col-md-9">
                                 <div class="top mb-4 mb-md-0">
@@ -289,8 +331,11 @@
                         </div><!-- /.hotel-inner-content -->
                     </div><!-- /.hotel-list-box -->
                 {% endfor %}
+
                 <nav aria-label="Page navigation example">
-                    <ul class="pagination  rt-paganation justify-content-center">
+                    {{ knp_pagination_render(list) }}
+
+                    <!--<ul class="pagination  rt-paganation justify-content-center">
                         <li class="page-item"><a class="page-link" href="#"><i class="icofont-rounded-double-left"></i></a>
                         </li>
                         <li class="page-item active"><a class="page-link" href="#">01</a></li>
@@ -298,7 +343,7 @@
                         <li class="page-item"><a class="page-link" href="#">03</a></li>
                         <li class="page-item"><a class="page-link" href="#"><i class="icofont-rounded-double-right"></i></a>
                         </li>
-                    </ul>
+                    </ul>-->
                 </nav>
 
             </div><!-- /.col-lg-9 -->
