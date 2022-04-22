@@ -15,7 +15,7 @@ class Offre
     /**
      * @var int
      *
-     * @ORM\Column(name="idOf", type="integer", nullable=false)
+     * @ORM\Column(name="id_of", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -24,7 +24,7 @@ class Offre
     /**
      * @var string
      *
-     * @ORM\Column(name="nomOffre", type="string", length=30, nullable=false)
+     * @ORM\Column(name="nom_offre", type="string", length=30, nullable=false)
      */
     private $nomOffre;
 
@@ -38,7 +38,7 @@ class Offre
     /**
      * @return int
      */
-    public function getIdOf(): ?int
+    public function getIdOf(): int
     {
         return $this->idOf;
     }

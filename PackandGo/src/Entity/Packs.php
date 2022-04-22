@@ -15,7 +15,7 @@ class Packs
     /**
      * @var int
      *
-     * @ORM\Column(name="idPack", type="integer", nullable=false)
+     * @ORM\Column(name="id_pack", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -24,7 +24,7 @@ class Packs
     /**
      * @var string
      *
-     * @ORM\Column(name="nomPack", type="string", length=100, nullable=false)
+     * @ORM\Column(name="nom_pack", type="string", length=100, nullable=false)
      */
     private $nomPack;
 
