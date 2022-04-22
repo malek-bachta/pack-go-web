@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Payment
  *
- * @ORM\Table(name="payment", indexes={@ORM\Index(name="id_user", columns={"id_user"}), @ORM\Index(name="id_hotel", columns={"id_hotel"})})
+ * @ORM\Table(name="payment", indexes={@ORM\Index(name="id_hotel", columns={"id_hotel"}), @ORM\Index(name="id_user", columns={"id_user"})})
  * @ORM\Entity
  */
 class Payment
@@ -36,16 +36,6 @@ class Payment
     private $somme;
 
     /**
-     * @var \Hotels
-     *
-     * @ORM\ManyToOne(targetEntity="Hotels")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_hotel", referencedColumnName="idH")
-     * })
-     */
-    private $idHotel;
-
-    /**
      * @var \User
      *
      * @ORM\ManyToOne(targetEntity="User")
@@ -54,6 +44,16 @@ class Payment
      * })
      */
     private $idUser;
+
+    /**
+     * @var \Hotels
+     *
+     * @ORM\ManyToOne(targetEntity="Hotels")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_hotel", referencedColumnName="idH")
+     * })
+     */
+    private $idHotel;
 
 
 }

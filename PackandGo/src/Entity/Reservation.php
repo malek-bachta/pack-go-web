@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Reservation
  *
- * @ORM\Table(name="reservation", indexes={@ORM\Index(name="id_trasp", columns={"id_trasp"}), @ORM\Index(name="id_u", columns={"id_u"})})
+ * @ORM\Table(name="reservation", indexes={@ORM\Index(name="id_u", columns={"id_u"}), @ORM\Index(name="id_trasp", columns={"id_trasp"})})
  * @ORM\Entity
  */
 class Reservation
@@ -50,16 +50,6 @@ class Reservation
     private $etat;
 
     /**
-     * @var \Transport
-     *
-     * @ORM\ManyToOne(targetEntity="Transport")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_trasp", referencedColumnName="id")
-     * })
-     */
-    private $idTrasp;
-
-    /**
      * @var \User
      *
      * @ORM\ManyToOne(targetEntity="User")
@@ -68,6 +58,16 @@ class Reservation
      * })
      */
     private $idU;
+
+    /**
+     * @var \Transport
+     *
+     * @ORM\ManyToOne(targetEntity="Transport")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_trasp", referencedColumnName="id")
+     * })
+     */
+    private $idTrasp;
 
 
 }

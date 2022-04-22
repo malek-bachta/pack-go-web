@@ -38,7 +38,7 @@ class Offre
     /**
      * @return int
      */
-    public function getIdOf(): int
+    public function getIdOf(): ?int
     {
         return $this->idOf;
     }

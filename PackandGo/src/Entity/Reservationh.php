@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Reservationh
  *
- * @ORM\Table(name="reservationh", indexes={@ORM\Index(name="idhotel", columns={"idhotel"}), @ORM\Index(name="idu", columns={"idu"})})
+ * @ORM\Table(name="reservationh", indexes={@ORM\Index(name="idu", columns={"idu"}), @ORM\Index(name="idhotel", columns={"idhotel"})})
  * @ORM\Entity
  */
 class Reservationh
@@ -50,16 +50,6 @@ class Reservationh
     private $etat;
 
     /**
-     * @var \Hotels
-     *
-     * @ORM\ManyToOne(targetEntity="Hotels")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idhotel", referencedColumnName="idH")
-     * })
-     */
-    private $idhotel;
-
-    /**
      * @var \User
      *
      * @ORM\ManyToOne(targetEntity="User")
@@ -68,6 +58,16 @@ class Reservationh
      * })
      */
     private $idu;
+
+    /**
+     * @var \Hotels
+     *
+     * @ORM\ManyToOne(targetEntity="Hotels")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idhotel", referencedColumnName="idH")
+     * })
+     */
+    private $idhotel;
 
 
 }
