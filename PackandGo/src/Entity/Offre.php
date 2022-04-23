@@ -45,7 +45,7 @@ class Offre
     /**
      * @param $packs
      */
-    public function __construct($packs)
+    public function __construct()
     {
         $this->packs = new ArrayCollection();
     }
@@ -89,9 +89,7 @@ class Offre
     /**
      * @return Collection<int, Packs>
      */
-    /**
-     * @return ArrayCollection
-     */
+
     public function getPacks(): ArrayCollection
     {
         return $this->packs;
