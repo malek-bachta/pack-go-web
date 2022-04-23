@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Packs
@@ -62,117 +63,107 @@ class Packs
      * @ORM\Column(name="budget_pack", type="integer", nullable=false)
      */
     private $budgetPack;
-
     /**
-     * @return int
+     * @ORM\ManyToOne(targetEntity=Offre::class, inversedBy="packs")
+     *   * @ORM\JoinColumns({
+     *  @ORM\JoinColumn(name="offre", referencedColumnName="id_of", nullable=false)
+     * })
      */
+    private $offre;
+
+
     public function getIdPack(): ?int
     {
         return $this->idPack;
     }
 
-    /**
-     * @param int $idPack
-     */
     public function setIdPack(int $idPack): void
     {
         $this->idPack = $idPack;
     }
 
-    /**
-     * @return string
-     */
+
     public function getNomPack(): ?string
     {
         return $this->nomPack;
     }
 
-    /**
-     * @param string $nomPack
-     */
+
     public function setNomPack(string $nomPack): void
     {
         $this->nomPack = $nomPack;
     }
 
-    /**
-     * @return string
-     */
+
     public function getTexte(): ?string
     {
         return $this->texte;
     }
 
-    /**
-     * @param string $texte
-     */
+
     public function setTexte(string $texte): void
     {
         $this->texte = $texte;
     }
 
-    /**
-     * @return string
-     */
     public function getService(): ?string
     {
         return $this->service;
     }
 
-    /**
-     * @param string $service
-     */
+
     public function setService(string $service): void
     {
         $this->service = $service;
     }
 
-    /**
-     * @return string
-     */
+
     public function getGuide(): ?string
     {
         return $this->guide;
     }
 
-    /**
-     * @param string $guide
-     */
+
     public function setGuide(string $guide): void
     {
         $this->guide = $guide;
     }
 
-    /**
-     * @return string
-     */
+
     public function getDestination(): ?string
     {
         return $this->destination;
     }
 
-    /**
-     * @param string $destination
-     */
+
     public function setDestination(string $destination): void
     {
         $this->destination = $destination;
     }
 
-    /**
-     * @return int
-     */
+
     public function getBudgetPack(): ?int
     {
         return $this->budgetPack;
     }
 
-    /**
-     * @param int $budgetPack
-     */
+
     public function setBudgetPack(int $budgetPack): void
     {
         $this->budgetPack = $budgetPack;
+    }
+
+
+    public function getOffre(): ?Offre
+    {
+        return $this->offre;
+    }
+
+
+    public function setOffre(?Offre  $offre): self
+    {
+        $this->offre = $offre;
+        return $this;
     }
 
 

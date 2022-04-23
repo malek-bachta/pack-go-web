@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,53 +36,83 @@ class Offre
      */
     private $budget;
 
+
     /**
-     * @return int
+     * @ORM\OneToMany(targetEntity=Packs::class, mappedBy="offre")
      */
+    private $packs;
+
+    /**
+     * @param $packs
+     */
+    public function __construct($packs)
+    {
+        $this->packs = new ArrayCollection();
+    }
+
+
     public function getIdOf(): ?int
     {
         return $this->idOf;
     }
 
-    /**
-     * @param int $idOf
-     */
+
     public function setIdOf(int $idOf): void
     {
         $this->idOf = $idOf;
     }
 
-    /**
-     * @return string
-     */
+
     public function getNomOffre(): ?string
     {
         return $this->nomOffre;
     }
 
-    /**
-     * @param string $nomOffre
-     */
+
     public function setNomOffre(string $nomOffre): void
     {
         $this->nomOffre = $nomOffre;
     }
 
-    /**
-     * @return int
-     */
+
     public function getBudget(): ?int
     {
         return $this->budget;
     }
 
-    /**
-     * @param int $budget
-     */
     public function setBudget(int $budget): void
     {
         $this->budget = $budget;
     }
 
+
+    /**
+     * @return Collection<int, Packs>
+     */
+    /**
+     * @return ArrayCollection
+     */
+    public function getPacks(): ArrayCollection
+    {
+        return $this->packs;
+    }
+
+    public function addPack(Packs $pack):self
+    {
+        if(!$this->packs->contains($pack)){
+            $this->packs[] =$pack;
+            $pack->setOffre($this);
+        }
+        return $this;
+    }
+
+    public function removePak(Packs $pack):self
+    {
+        if($this->packs->removeElement($pack)){
+            if($pack->getOffre()===$this);
+            $pack->setOffre(null);
+        }
+        return $this;
+        }
 
 }
