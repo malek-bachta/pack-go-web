@@ -13,7 +13,7 @@
     </div><!-- /.breadcrumbs-content -->
 {% endblock %}
 
-{% block haja %}
+{% block body %}
     <section class="content-area">
         <div class="container">
             <div class="row">
@@ -57,11 +57,21 @@
                         <div class="d-flex flex-md-row flex-column justify-content-md-between">
                             <div>
                                 <span class="d-block f-size-12 text-878">From USD</span>
-                                <span class="d-block f-size-24 primary-color rt-strong">{{ hotel.service.prix }}</span>
+                                <span class="d-block f-size-24 primary-color rt-strong">${{ hotel.service.prix }}</span>
                             </div>
-
+                            <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+                            <script src="{{ asset('js/scripts.js') }}"></script>
                             <div>
                                 <a href="#" class="rt-btn rt-gradient3 rt-sm2 text-uppercase pill">Book this Hotel</a>
+                            </div>
+                            <div>
+                                <div class="stars">
+                                    <i class="lar la-star" data-value="1"></i><i class="lar la-star" data-value="2"></i><i class="lar la-star" data-value="3"></i><i class="lar la-star" data-value="4"></i><i class="lar la-star" data-value="5"></i>
+                                </div>
+                                {{ form_start(rate) }}
+                                {{ form_widget(rate.rate, {'attr' :{'type': "HiddenType" , 'name': "note", 'id': "note"}}) }}
+                                {{ form_widget(rate.hotel)}}
+                                <button type="submit" class="rt-btn rt-gradient rt-sm2 text-uppercase pill">Valider{{ form_end(rate) }}</button>
                             </div>
                         </div><!-- /.d-flex -->
                         <div class="rt-divider style-one rt-mt-30"></div><!-- /.rt-divider -->

@@ -84,6 +84,16 @@ class Hotels
      */
     private $service;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Rating::class, mappedBy="hotel")
+     */
+    private $ratings;
+
+    public function __construct()
+    {
+        $this->ratings = new ArrayCollection();
+    }
+
 
 
 
@@ -199,6 +209,36 @@ class Hotels
     public function setService(?Services $service): self
     {
         $this->service = $service;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Rating>
+     */
+    public function getRatings(): Collection
+    {
+        return $this->ratings;
+    }
+
+    public function addRating(Rating $rating): self
+    {
+        if (!$this->ratings->contains($rating)) {
+            $this->ratings[] = $rating;
+            $rating->setHotel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRating(Rating $rating): self
+    {
+        if ($this->ratings->removeElement($rating)) {
+            // set the owning side to null (unless already changed)
+            if ($rating->getHotel() === $this) {
+                $rating->setHotel(null);
+            }
+        }
 
         return $this;
     }

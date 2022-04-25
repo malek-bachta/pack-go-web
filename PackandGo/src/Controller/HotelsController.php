@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Rating;
 use App\Form\HotelFormType;
+use App\Form\RatingFormType;
 use App\Repository\WorkshopRepository;
 use Doctrine\ORM\EntityManager;
 use Knp\Component\Pager\PaginatorInterface;
@@ -41,17 +43,27 @@ class HotelsController extends AbstractController
     /**
      * @Route("/hotels/details/{idh}", name="details")
      */
-    public function details($idh)
+    public function details($idh, Request $req)
     {
         $repo=$this->getDoctrine()
             ->getRepository(Hotels::class);
         $hotels=$repo->find($idh);
+        $rating=new Rating();
+        $form=$this->createForm(RatingFormType::class,$rating);
+        $form->handleRequest($req);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($rating);
+            $em->flush();
+        }
 
         return $this->render('hotels/hoteldetails.html.twig', [
-            'hotel'=>$hotels
-
+            'hotel'=>$hotels,
+            'rate' => $form->createView(),
         ]);
     }
+
+
 
 
     /**
@@ -169,6 +181,8 @@ class HotelsController extends AbstractController
             'result' => $tab,
         ]);
     }
+
+
 
 
 
