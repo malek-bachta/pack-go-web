@@ -51,16 +51,21 @@ class PacksController extends AbstractController
         ]);
     }
 
-    /*/**
+    /**
      * @Route("/view", name="app_packs_show", methods={"GET"})
-     *//*
-    public function show(Packs $pack): Response
+     */
+    public function show(EntityManagerInterface $entityManager): Response
     {
+        $packs = $entityManager
+            ->getRepository(Packs::class)
+            ->findAll();
+
         return $this->render('packs/show.html.twig', [
-            'pack' => $pack,
+            'packs' => $packs,
         ]);
     }
-*/
+
+
     /**
      * @Route("/edit/{idPack}", name="app_packs_edit", methods={"GET", "POST"})
      */
