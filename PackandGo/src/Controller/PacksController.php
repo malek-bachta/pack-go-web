@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Packs;
 use App\Form\Packs1Type;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/packs")
  */
-class PacksController extends AbstractController
+class PacksController extends Controller
 {
     /**
      * @Route("/", name="app_packs_index", methods={"GET"})
@@ -54,12 +54,19 @@ class PacksController extends AbstractController
     /**
      * @Route("/view", name="app_packs_show", methods={"GET"})
      */
-    public function show(EntityManagerInterface $entityManager): Response
+    public function show(EntityManagerInterface $entityManager,Request $request): Response
     {
-        $packs = $entityManager
+        $allpacks = $entityManager
             ->getRepository(Packs::class)
             ->findAll();
-
+        $packs = $this->get('knp_paginator')->paginate(
+        // Doctrine Query, not results
+            $allpacks,
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            2
+        );
         return $this->render('packs/show.html.twig', [
             'packs' => $packs,
         ]);
