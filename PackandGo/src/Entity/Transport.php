@@ -54,10 +54,13 @@ class Transport
     private $destination;
 
     /**
-     * @ORM\OneToOne(targetEntity=Guide::class, inversedBy="transportid", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\ManyToOne(targetEntity=Guide::class, inversedBy="transports")
+     * @ORM\JoinColumn(nullable=false, name="Guide", referencedColumnName="id")
      */
-    private $guideid;
+    private $guide;
+
+
+
 
     public function getId(): ?int
     {
@@ -124,17 +127,18 @@ class Transport
         return $this;
     }
 
-    public function getGuideid(): ?guide
+    public function getGuide(): ?guide
     {
-        return $this->guideid;
+        return $this->guide;
     }
 
-    public function setGuideid(guide $guideid): self
+    public function setGuide(?guide $guide): self
     {
-        $this->guideid = $guideid;
+        $this->guide = $guide;
 
         return $this;
     }
+
 
 
 }

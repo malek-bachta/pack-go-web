@@ -30,7 +30,7 @@
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <div class="col-lg-6">
-                                                    {{ form_row(form.type, {'attr' :{'class': "form-control"}}) }}
+                                                    {{ form_widget(form.type, {'attr' :{'class': "form-control"}}) }}
                                                     <div class="invalid-feedback">
                                                         Please enter a hotel type.
                                                     </div>
@@ -41,7 +41,7 @@
                                                             class="text-danger">*</span>
                                                 </label>
                                                 <div class="col-lg-6">
-                                                    {{ form_row(form.nomagence, {'attr' :{'class': "form-control"}}) }}
+                                                    {{ form_widget(form.nomagence, {'attr' :{'class': "form-control"}}) }}
 
                                                     <div class="invalid-feedback">
                                                         Please enter a Transport name.
@@ -53,7 +53,7 @@
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <div class="col-lg-6">
-                                                    {{ form_row(form.prix, {'attr' :{'class': "form-control"}}) }}
+                                                    {{ form_widget(form.prix, {'attr' :{'class': "form-control"}}) }}
                                                     <div class="invalid-feedback">
                                                         Please enter a Price.
                                                     </div>
@@ -64,26 +64,38 @@
                                                             class="text-danger">*</span>
                                                 </label>
                                                 <div class="col-lg-6">
-                                                    {{ form_row(form.duree, {'attr' :{'class': "form-control"}}) }}
+                                                    {{ form_widget(form.duree, {'attr' :{'class': "form-control"}}) }}
                                                     <div class="invalid-feedback">
                                                         Please enter the Duration.
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-
-
                                             <div class="mb-3 row">
-                                                <label class="col-lg-4 col-form-label" for="validationCustom07">Destination
+                                                <label class="col-lg-4 col-form-label" for="validationCustom04">Guides <span
+                                                            class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    {{ form_widget(form.guide, {'attr' :{'class': "form-control"}}) }}
+                                                    <div class="invalid-feedback">
+                                                        Please enter the Duration.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom04">Destination
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <div class="col-lg-6">
-                                                    {{ form_row(form.destination, {'attr' :{'class': "form-control"}}) }}
+                                                    {{ form_widget(form.destination, {'attr' :{'class': "form-control"}}) }}
                                                     <div class="invalid-feedback">
                                                         Please enter the destination.
                                                     </div>
                                                 </div>
                                             </div>
+
+                                        </div>
+                                        <div class="mb-3 row">
+
 
 
 

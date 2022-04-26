@@ -23,7 +23,7 @@ class GuideController extends AbstractController
         ]);
     }
     /**
-     * @Route("/guide/show", name="list_guide")
+     * @Route("/guide/showg", name="list_guide")
      */
     public function getAllClasses(): Response
     {
@@ -38,7 +38,7 @@ class GuideController extends AbstractController
      * @Route("/guide/addg", name="add_guide")
      */
 
-    public function add(Request $req)
+    public function addg(Request $req)
     {
         $guide=new guide();
         $form=$this->createForm(GuideFormType::class,$guide);

@@ -70,27 +70,27 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="#hotel">
+            <a class="nav-link inactive" href="#hotel">
 
                 <i class="icofont-hotel"></i>
                 <span>Hotels</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link inactive" href="#car" >
+            <a class="nav-link inactive" href="{{ path('list_transport2') }}" >
                 <i class="icofont-car-alt-4"></i>
                 <span>Cars</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link inactive" href="{{ path('list_transport3') }}">
+            <a class="nav-link active" href="{{ path('list_transport3') }}">
                 <i class="icofont-train-line"></i>
                 <span>Trains</span>
             </a>
         </li>
     </ul>
 {% endblock %}
-{% block bodytrain %}
+{% block body %}
     {% for t in list  %}
         {% if (t.type=="train") %}
             <div class="flight-list-box rt-mb-30 row">

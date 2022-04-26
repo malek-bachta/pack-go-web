@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -51,9 +53,15 @@ class Guide
     private $prix;
 
     /**
-     * @ORM\OneToOne(targetEntity=Transport::class, mappedBy="guideid", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=Transport::class, mappedBy="Guide")
      */
-    private $transportid;
+    private $transports;
+
+    public function __construct()
+    {
+        $this->transports = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -108,22 +116,36 @@ class Guide
         return $this;
     }
 
-    public function getTransportid(): ?Transport
+    /**
+     * @return Collection<int, Transport>
+     */
+    public function getTransports(): Collection
     {
-        return $this->transportid;
+        return $this->transports;
     }
 
-    public function setTransportid(Transport $transportid): self
+    public function addTransport(Transport $transport): self
     {
-        // set the owning side of the relation if necessary
-        if ($transportid->getGuideid() !== $this) {
-            $transportid->setGuideid($this);
+        if (!$this->transports->contains($transport)) {
+            $this->transports[] = $transport;
+            $transport->setGuide($this);
         }
-
-        $this->transportid = $transportid;
 
         return $this;
     }
+
+    public function removeTransport(Transport $transport): self
+    {
+        if ($this->transports->removeElement($transport)) {
+            // set the owning side to null (unless already changed)
+            if ($transport->getGuide() === $this) {
+                $transport->setGuide(null);
+            }
+        }
+
+        return $this;
+    }
+
 
 
 }

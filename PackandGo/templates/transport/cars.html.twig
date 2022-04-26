@@ -4,12 +4,12 @@
 {% extends 'front2.html.twig' %}
 {% block title %}
     <div class="breadcrumbs-content">
-        <h3>Hotels</h3>
+        <h3>Cars</h3>
         <div class="breadcrumbs">
             <span class="divider"><i class="icofont-home"></i></span>
             <a href="#" title="Home">Home</a>
             <span class="divider"><i class="icofont-simple-right"></i></span>
-            Hotel
+            Cars
         </div><!-- /.breadcrumbs -->
     </div><!-- /.breadcrumbs-content -->
 {% endblock %}
@@ -69,107 +69,282 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="#hotel">
+            <a class="nav-link inactive" href="#hotel">
 
                 <i class="icofont-hotel"></i>
                 <span>Hotels</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link inactive" href="{{ path('list_transport2') }}" >
+            <a class="nav-link active" href="{{ path('list_transport2') }}" >
                 <i class="icofont-car-alt-4"></i>
                 <span>Cars</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link inactive" href="#train">
+            <a class="nav-link inactive" href="{{ path('list_transport3') }}">
                 <i class="icofont-train-line"></i>
                 <span>Trains</span>
             </a>
         </li>
     </ul>
 {% endblock %}
-{% block bodycar %}
+{% block body %}
     {% for t in list  %}
         {% if (t.type=="sayara") %}
-            <div class="flight-list-box rt-mb-30">
-                <div class="top-content d-flex flex-md-row flex-column justify-content-lg-between">
-                    <div class="car-thumb mr-4 mr-lg-0 mb-5 mb-md-0">
-                        <img src="{{ asset('front/assets/images/all-img/car-1.png') }}" alt="car image" class="rt-border-primary2">
-                    </div><!-- /.car-thumb -->
-                    <div class="economy mb-5 mb-md-0">
-                        <h5 class="f-size-16 rt-medium">Economy</h5>
-                        <span class="d-block f-size-13 text-555">{{ t.nomagence }}</span>
-                        <span class="d-block text-444 rt-mb-5"> <span><i class="icofont-wheelchair"></i> 4</span> <span><i class="icofont-briefcase"></i> 2</span></span>
-                        <span class="badge rt-gradinet-badge pill rt-mr-10">4.3 <small>/5</small></span>
-                        <span class="primary-color">Excellent</span>
-                        <span class="f-size-12 text-878">( 86 Reviews )</span>
-                    </div><!-- /.economy -->
-                    <div class="ck-list">
-                        <ul class="rt-list">
-                            <li class="d-block">
-                                <span class="primary-color rt-mr-3"><i class="icofont-check"></i></span> Automatic transmission
-                            </li>
-                            <li class="d-block">
-                                <span class="primary-color rt-mr-3"><i class="icofont-check"></i></span> Unlimited mileage
-                            </li>
-                            <li class="d-block">
-                                <span class="primary-color rt-mr-3"><i class="icofont-check"></i></span> Free Cancellation
-                            </li>
-                            <li class="d-block">
-                                <span class="primary-color rt-mr-3"><i class="icofont-check"></i></span> Instant Confirmation
-                            </li>
-                        </ul><!-- /.rt-list -->
-                    </div><!-- /.ck-list -->
-                    <div class="price-mant text-lg-right">
-                        <span class="d-block f-size-12 text-878">7 days</span>
-                        <span class="d-block text-primary f-size-24 rt-semiblod title-font">{{ t.prix }}</span>
-                        <a href="car-2.html" class="rt-btn rt-gradient pill rt-sm3 text-uppercase rt-mt-10">Select</a>
-                    </div><!-- /.price-mant -->
-                </div><!-- /.top-content -->
-                <div class="bottom-content row">
-                    <div class="single-discribe col-md-4">
-                        <h3 class="f-size-16 rt-medium text-424 rt-mb-10">Pick-up</h3>
-                        <p class="f-size-14 line-height-24 text-555">
-                            323 West 34Th Street, <br>
-                            Manhattan, New York, <br>
-                            USA
-                        </p>
-                        <p class="f-size-14 line-height-24 text-555 rt-mb-0">
-                            0.51 mi from New <br>
-                            York city center
-                        </p>
-                    </div><!-- /.single-discribe -->
-                    <div class="single-discribe col-md-4">
-                        <h3 class="f-size-16 rt-medium text-424 rt-mb-10">Drop-off</h3>
-                        <p class="f-size-14 line-height-24 text-555">
-                            323 West 34Th Street, <br>
-                            Manhattan, New York, <br>
-                            USA
-                        </p>
-                        <p class="f-size-14 line-height-24 text-555 rt-mb-0">
-                            0.51 mi from New <br>
-                            York city center
-                        </p>
-                    </div><!-- /.single-discribe -->
-                    <div class="single-discribe col-md-4">
-                        <h3 class="f-size-16 rt-medium text-424 rt-mb-10">Included for Free</h3>
-                        <ul class="rt-list">
-                            <li class="d-block">
-                                <span class="text-555 rt-mr-3"><i class="icofont-check"></i></span> Automatic transmission
-                            </li>
-                            <li class="d-block">
-                                <span class="text-555 rt-mr-3"><i class="icofont-check"></i></span> Theft Protection
-                            </li>
-                            <li class="d-block">
-                                <span class="text-555 rt-mr-3"><i class="icofont-check"></i></span> Third Party Liability
-                            </li>
+            <div class="tab-pane rtIncative fade-in-bottom" id="rt-item_b_thrid" role="tabpanel" aria-labelledby="rt-item_b_thrid">
+                <div class="row">
+                    <div class="col-lg-3 mx-auto col-md-7 mb-5 mb-lg-0">
+                        <div class="rt-sidebar-group">
 
-                        </ul><!-- /.rt-list -->
-                    </div><!-- /.single-discribe -->
-                </div><!-- /.bottom-content -->
-            </div><!-- /.flight-box -->
+                            <div class="rt-widget widget_plane_time">
+                                <h3 class="rt-widget-title">
+                                    Car type
+                                </h3><!-- /.rt-widget-title -->
+                                <ul>
+                                    <li class="clearfix">
+
+                                        <div class="form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="car_gridCheckrt-1w1">
+                                            <label class="form-check-label" for="car_gridCheckrt-1w1">
+                                                Economy (42)
+                                            </label>
+                                        </div><!-- ./orm-group -->
+                                        <span class="float-right">$30</span>
+                                    </li>
+                                </ul>
+                            </div><!-- /.rt-widget -->
+                            <div class="rt-widget widget_plane_time">
+                                <h3 class="rt-widget-title">
+                                    Seats
+                                </h3><!-- /.rt-widget-title -->
+                                <ul>
+                                    <li class="clearfix">
+
+                                        <div class="form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="car_gridCheckrt-3">
+                                            <label class="form-check-label" for="car_gridCheckrt-3">
+                                                Less than 4 seats
+                                            </label>
+                                        </div><!-- ./orm-group -->
+                                        <span class="float-right">$1,853.7</span>
+                                    </li>
+                                    <li class="clearfix">
+
+                                        <div class="form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="car_gridCheckrt-4">
+                                            <label class="form-check-label" for="car_gridCheckrt-4">
+                                                4-5 Seats
+                                            </label>
+                                        </div><!-- ./orm-group -->
+                                        <span class="float-right">$25.07</span>
+                                    </li>
+                                    <li class="clearfix">
+
+                                        <div class="form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="car_gridCheckrt-5">
+                                            <label class="form-check-label" for="car_gridCheckrt-5">
+                                                6-7 Seats
+                                            </label>
+                                        </div><!-- ./orm-group -->
+                                        <span class="float-right">$200.4</span>
+                                    </li>
+                                    <li class="clearfix">
+
+                                        <div class="form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="car_gridCheckrt-51">
+                                            <label class="form-check-label" for="car_gridCheckrt-51">
+                                                8-9 Seats
+                                            </label>
+                                        </div><!-- ./orm-group -->
+                                        <span class="float-right">$259.03</span>
+                                    </li>
+                                </ul>
+
+                            </div><!-- /.rt-widget -->
+                            <div class="rt-widget widget_plane_time">
+                                <h3 class="rt-widget-title">
+                                    Mileage Allowance
+                                </h3><!-- /.rt-widget-title -->
+                                <ul>
+                                    <li class="clearfix">
+
+                                        <div class="form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="car_gridCheckrt-11">
+                                            <label class="form-check-label" for="car_gridCheckrt-11">
+                                                Unlimited Mileage
+                                            </label>
+                                        </div><!-- ./orm-group -->
+                                        <span class="float-right">$58.94</span>
+
+                                    </li>
+                                    <li class="clearfix">
+
+                                        <div class="form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="car_gridCheckrt-111">
+                                            <label class="form-check-label" for="car_gridCheckrt-111">
+                                                Limited Mileage
+                                            </label>
+                                        </div><!-- ./orm-group -->
+                                        <span class="float-right">$25.07</span>
+
+                                    </li>
+                                </ul>
+
+                            </div><!-- /.rt-widget -->
+                            <div class="rt-widget widget_plane_time">
+                                <h3 class="rt-widget-title">
+                                    Specifications
+                                </h3><!-- /.rt-widget-title -->
+                                <ul>
+                                    <li class="clearfix">
+
+                                        <div class="form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="car_gridCheckrt-22">
+                                            <label class="form-check-label" for="car_gridCheckrt-22">
+                                                Automatic Transmission
+                                            </label>
+                                        </div><!-- ./orm-group -->
+
+                                    </li>
+                                    <li class="clearfix">
+
+                                        <div class="form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="car_gridCheckrt-222">
+                                            <label class="form-check-label" for="car_gridCheckrt-222">
+                                                Manual Transmission
+                                            </label>
+                                        </div><!-- ./orm-group -->
+
+                                    </li>
+                                    <li class="clearfix">
+
+                                        <div class="form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="car_gridCheckrt-2222">
+                                            <label class="form-check-label" for="car_gridCheckrt-2222">
+                                                Air Conditioning
+                                            </label>
+                                        </div><!-- ./orm-group -->
+
+                                    </li>
+                                </ul>
+
+                            </div><!-- /.rt-widget -->
+
+                        </div><!-- /.rt-sidebar-group -->
+                    </div><!-- /.col-lg-3 -->
+                    <div class="col-lg-9">
+                        <div class="flight-list-box rt-mb-30">
+                            <form action="#" class="row">
+                                <div class="col-lg-3 col-md-6 mb-3 mb-lg-0">
+                                    <button class="rt-btn pill rt-sm rt-gradient d-block">Recommended</button>
+                                </div><!-- /.col-lg-4 -->
+                                <div class="col-lg-3 col-md-6 mb-3 mb-lg-0">
+                                    <select class="rt-selectactive banner-select" name="from" style="width: 100%">
+                                        <option value="1">Price</option>
+                                        <option value="2">100</option>
+                                        <option value="3">100</option>
+                                        <option value="4">400</option>
+                                        <option value="5">500</option>
+                                    </select>
+                                </div><!-- /.col-lg-3 -->
+                                <div class="col-lg-3 rt-input-group mini col-md-6  mb-3 mb-md-0">
+                                    <input type="text" class="rt-date-picker form-control" placeholder="Departure Time">
+                                </div><!-- /.col-lg-3 -->
+                                <div class="col-lg-3 rt-input-group mini col-md-6 ">
+                                    <input type="text" class="form-control rt-date-picker" placeholder="Arrival Time ">
+                                </div><!-- /.col-lg-3 -->
+                            </form>
+                        </div><!-- /.flight-list-box -->
+                        <div class="flight-list-box rt-mb-30">
+                            <div class="top-content d-flex flex-md-row flex-column justify-content-lg-between">
+                                <div class="car-thumb mr-4 mr-lg-0 mb-5 mb-md-0">
+                                    <img src="assets/images/all-img/car-1.png" alt="car image" class="rt-border-primary2">
+                                </div><!-- /.car-thumb -->
+                                <div class="economy mb-5 mb-md-0">
+                                    <h5 class="f-size-16 rt-medium">Economy</h5>
+                                    <span class="d-block f-size-13 text-555">Hyundai i10 or Similar</span>
+                                    <span class="d-block text-444 rt-mb-5"> <span><i class="icofont-wheelchair"></i> 4</span> <span><i class="icofont-briefcase"></i> 2</span></span>
+                                    <span class="badge rt-gradinet-badge pill rt-mr-10">4.3 <small>/5</small></span>
+                                    <span class="primary-color">Excellent</span>
+                                    <span class="f-size-12 text-878">( 86 Reviews )</span>
+                                </div><!-- /.economy -->
+                                <div class="ck-list">
+                                    <ul class="rt-list">
+                                        <li class="d-block">
+                                            <span class="primary-color rt-mr-3"><i class="icofont-check"></i></span> Automatic transmission
+                                        </li>
+                                        <li class="d-block">
+                                            <span class="primary-color rt-mr-3"><i class="icofont-check"></i></span> Unlimited mileage
+                                        </li>
+                                        <li class="d-block">
+                                            <span class="primary-color rt-mr-3"><i class="icofont-check"></i></span> Free Cancellation
+                                        </li>
+                                        <li class="d-block">
+                                            <span class="primary-color rt-mr-3"><i class="icofont-check"></i></span> Instant Confirmation
+                                        </li>
+                                    </ul><!-- /.rt-list -->
+                                </div><!-- /.ck-list -->
+                                <div class="price-mant text-lg-right">
+                                    <span class="d-block f-size-12 text-878">7 days</span>
+                                    <span class="d-block text-primary f-size-24 rt-semiblod title-font">$275</span>
+                                    <a href="car-2.html" class="rt-btn rt-gradient pill rt-sm3 text-uppercase rt-mt-10">Select</a>
+                                </div><!-- /.price-mant -->
+                            </div><!-- /.top-content -->
+                            <div class="bottom-content row">
+                                <div class="single-discribe col-md-4">
+                                    <h3 class="f-size-16 rt-medium text-424 rt-mb-10">Pick-up</h3>
+                                    <p class="f-size-14 line-height-24 text-555">
+                                        323 West 34Th Street, <br>
+                                        Manhattan, New York, <br>
+                                        USA
+                                    </p>
+                                    <p class="f-size-14 line-height-24 text-555 rt-mb-0">
+                                        0.51 mi from New <br>
+                                        York city center
+                                    </p>
+                                </div><!-- /.single-discribe -->
+                                <div class="single-discribe col-md-4">
+                                    <h3 class="f-size-16 rt-medium text-424 rt-mb-10">Drop-off</h3>
+                                    <p class="f-size-14 line-height-24 text-555">
+                                        323 West 34Th Street, <br>
+                                        Manhattan, New York, <br>
+                                        USA
+                                    </p>
+                                    <p class="f-size-14 line-height-24 text-555 rt-mb-0">
+                                        0.51 mi from New <br>
+                                        York city center
+                                    </p>
+                                </div><!-- /.single-discribe -->
+                                <div class="single-discribe col-md-4">
+                                    <h3 class="f-size-16 rt-medium text-424 rt-mb-10">Included for Free</h3>
+                                    <ul class="rt-list">
+                                        <li class="d-block">
+                                            <span class="text-555 rt-mr-3"><i class="icofont-check"></i></span> Automatic transmission
+                                        </li>
+                                        <li class="d-block">
+                                            <span class="text-555 rt-mr-3"><i class="icofont-check"></i></span> Theft Protection
+                                        </li>
+                                        <li class="d-block">
+                                            <span class="text-555 rt-mr-3"><i class="icofont-check"></i></span> Third Party Liability
+                                        </li>
+
+                                    </ul><!-- /.rt-list -->
+                                </div><!-- /.single-discribe -->
+                            </div><!-- /.bottom-content -->
+                        </div><!-- /.flight-box -->
+
+
+
+                        <nav aria-label="Page navigation example">
+                                {{ knp_pagination_render(list) }}
+                          
+                        </nav>
+                    </div><!-- /.col-lg-9 -->
+                </div><!-- /.row -->
+            </div>
 
         {% endif %}
     {% endfor %}
+
 {% endblock %}

@@ -14,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class TransportController extends AbstractController
 {
     /**
-     * @Route("/", name="app_transport")
+     * @Route("/", name="home")
      */
     public function index(): Response
     {
@@ -46,22 +46,27 @@ class TransportController extends AbstractController
             ->getRepository(Transport::class);
         $liste=$repo->findAll();
         $liste =$paginator->paginate(
-            $repo,
+            $liste,
             $request->query->getInt('page',1),
-            4
+            2
         );
-        return $this->render('transport/test.html.twig', [
+        return $this->render('transport/flight.html.twig', [
             'list' => $liste,
         ]);
     }
     /**
      * @Route("/transport/show2", name="list_transport2")
      */
-    public function ShowTranspor2(): Response
+    public function ShowTranspor2 (Request $request, PaginatorInterface $paginator): Response
     {
         $repo = $this->getDoctrine()
             ->getRepository(Transport::class);
         $liste=$repo->findAll();
+        $liste =$paginator->paginate(
+            $liste,
+            $request->query->getInt('page', 1),
+            2
+        );
         return $this->render('transport/cars.html.twig', [
             'list' => $liste,
         ]);
@@ -70,11 +75,16 @@ class TransportController extends AbstractController
     /**
      * @Route("/transport/show3", name="list_transport3")
      */
-    public function ShowTranspor3(): Response
+    public function ShowTranspor3(Request $request , PaginatorInterface $paginator): Response
     {
         $repo = $this->getDoctrine()
             ->getRepository(Transport::class);
         $liste=$repo->findAll();
+        $liste =$paginator->paginate(
+            $liste,
+            $request->query->getInt('page', 1),
+            2
+        );
         return $this->render('transport/train.html.twig', [
             'list' => $liste,
         ]);
@@ -83,7 +93,7 @@ class TransportController extends AbstractController
 
 
     /**
-     * @Route("/transport/add", name="add_transport")
+     * @Route("/transport/add", name="add_transporte")
      */
 
     public function add(Request $req)
