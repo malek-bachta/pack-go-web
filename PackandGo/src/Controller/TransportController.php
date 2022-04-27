@@ -48,7 +48,7 @@ class TransportController extends AbstractController
         $liste =$paginator->paginate(
             $liste,
             $request->query->getInt('page',1),
-            2
+            8
         );
         return $this->render('transport/flight.html.twig', [
             'list' => $liste,
@@ -65,7 +65,7 @@ class TransportController extends AbstractController
         $liste =$paginator->paginate(
             $liste,
             $request->query->getInt('page', 1),
-            2
+            6
         );
         return $this->render('transport/cars.html.twig', [
             'list' => $liste,
@@ -83,7 +83,7 @@ class TransportController extends AbstractController
         $liste =$paginator->paginate(
             $liste,
             $request->query->getInt('page', 1),
-            2
+            6
         );
         return $this->render('transport/train.html.twig', [
             'list' => $liste,
