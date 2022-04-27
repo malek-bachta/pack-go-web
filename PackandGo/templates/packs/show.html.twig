@@ -82,8 +82,8 @@
     <div class="main-header rt-sticky">
         <nav class="navbar">
             <div class="container">
-                <a href="index.html" class="brand-logo"><img src="assets/images/logo/logo-white.png" alt=""></a>
-                <a href="index.html" class="sticky-logo"><img src="assets/images/logo/logo.png" alt=""></a>
+                <a href="index.html" class="brand-logo"><img src="{{asset ('front/assets/images/logo/logo-white.png') }}" alt=""></a>
+                <a href="index.html" class="sticky-logo"><img src="{{asset ('front/assets/images/logo/logo.png')}}" alt=""></a>
                 <div class="ml-auto d-flex align-items-center">
 
 
@@ -131,6 +131,7 @@
                                             <li><a href="car-1.html">car One</a></li>
                                             <li><a href="car-2.html">car Two</a></li>
                                         </ul>
+                                    </li>
                                     </li>
                                     <li class="menu-item-has-children"><a href="#">blog Pages</a>
                                         <ul class="sub-menu">
@@ -289,24 +290,15 @@
                     <div class="rt-banner-searchbox trip-search">
                         <div class="rt-input-group">
                             <div class="single-input  col-md-9">
-                                <input type="text" class="form-control" placeholder="Depart">
-                                <span class="input-iconbadge"><i class="icofont-google-map"></i></span>
+                                <input type="text" class="form-control" placeholder="Search">
+
                             </div><!-- /.single-input -->
                             <div class="single-input  col-md-3">
                                 <input type="submit" value="Search" class="rt-btn rt-gradient pill text-uppercase d-block rt-Bshadow-2">
                             </div><!-- /.single-input -->
                         </div><!-- /.rt-input-group -->
                     </div><!-- /.rt-banner-searchbox -->
-
-
-
-
-
-
-
-
-
-
+                    
                 </div><!-- /.col-lg-10 -->
             </div><!-- /.row -->
         </div><!-- /.container -->
@@ -441,7 +433,29 @@
     <div class="navigation">
         <h1 align = "center" >  {{ knp_pagination_render(packs) }}</h1>
     </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 text-center text-lg-left">
+                    <div class="copy-text wow fade-in-bottom" data-wow-duration="1s">
+                        Copyright © 2018.All Rights Reserved By <a href="#">Emigrar</a>
+                    </div><!-- /.copy-text -->
+                </div><!-- /.col-lg-6 -->
+                <div class="col-lg-6 text-center text-lg-right">
+                    <div class="rt-footer-social wow fade-in-bottom" data-wow-duration="1.5s">
+                        <ul>
+                            <li><a href="#"><img src="{{ asset('front/assets/images/brands/card-1.png')}}" alt="cardimage" draggable="false"></a></li>
+                            <li><a href="#"><img src="{{ asset('front/assets/images/brands/card-2.png')}}" alt="cardimage" draggable="false"></a></li>
+                            <li><a href="#"><img src="{{ asset('front/assets/images/brands/card-3.png')}}" alt="cardimage" draggable="false"></a></li>
+                            <li><a href="#"><img src="{{ asset('front/assets/images/brands/card-4.png')}}" alt="cardimage" draggable="false"></a></li>
+                            <li><a href="#"><img src="{{ asset('front/assets/images/brands/card-5.png')}}" alt="cardimage" draggable="false"></a></li>
 
+                        </ul>
+                    </div><!-- /.rt-footer-social -->
+                </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.footer-bottom -->
 </section>
 
 
