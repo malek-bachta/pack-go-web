@@ -1,0 +1,54 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Reclamation index
+    {{ knp_pagination_render(reclamations) }}
+{% endblock %}
+
+{% block body %}
+    <br><br><br><br><br>
+
+    <table class="table">
+        <thead>
+
+        <tr>
+                <th>Sujet</th>
+                <th>Contenue</th>
+                <th>User</th>
+                <th>Dateenv</th>
+                <th>Etat</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+            <tr>
+                <td>{{ reclamation.sujet }}</td>
+                <td>{{ reclamation.contenue }}</td>
+                <td>{{ reclamation.IdUser.idC }}</td>
+
+                <td>{{ reclamation.dateenv ? reclamation.dateenv|date('Y-m-d') : '' }}</td>
+                {% if reclamation.etat == "Traitée" %}
+
+                    <td style="color: #1da851">{{ reclamation.etat }}</td>
+                {% else %}
+                    <td style="color: #ffce3a">{{ reclamation.etat }}</td>
+                    {% endif %}
+                    <td>
+                    {% if reclamation.etat == "en attent" %}
+                    <a href="{{ path('reclamation_traiter', {'id': reclamation.idReclamation}) }}" class="btn btn-secondary">Traité</a>
+                    {% else %}
+                        {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    <a href="{{ path('app_reclamation_new') }}">Create new
+    </a>
+{% endblock %}

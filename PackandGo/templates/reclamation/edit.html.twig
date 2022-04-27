@@ -1,0 +1,26 @@
+{% extends 'front.html.twig' %}
+
+{% block title %}Edit Reclamation{% endblock %}
+
+{% block body %}
+    {{ form_start(form, { 'attr': {'class': 'rt-form rt-line-form'} })  }}
+
+
+    <div class="row">
+    <div class="">
+        Sujet :
+        {{ form_widget(form.sujet, { 'attr': {'class': 'form-control rt-mb-30'} }) }}
+        {{ form_errors(form.sujet) }}
+    </div>
+    <div class="">
+        Contenue :
+        {{ form_widget(form.contenue, { 'attr': {'class': 'form-control rt-mb-30'} }) }}
+        {{ form_errors(form.contenue) }}
+    </div>
+
+
+    <div class="">
+        <input type="submit" value="Enregistrer" class="btn btn-primary" formnovalidate />
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
