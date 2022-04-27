@@ -17,8 +17,11 @@
                 <div class="card">
 
                     <div class="card-body">
+                        <script src="{{ asset('back/js/jquery.min.js') }}"></script>
+                        <input type="text" class="form-control" placeholder="Search…" aria-label="Search"id="search">
+
                         <div class="table-responsive">
-                            <table class="table table-responsive-md">
+                            <table class="table table-responsive-md" id="tableac">
 
 
         <thead>
@@ -34,9 +37,38 @@
                 <th><strong>actions</strong></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="all">
         {% for pack in packs %}
-            <tr>
+        <script>
+            $(document).ready(function(){
+                $('#search').keyup(function(){
+                    search_table($(this).val());
+                });
+                function search_table(value){
+                    $('#tableac tbody tr').each(function(){
+                        var found = 'false';
+                        $(this).each(function(){
+                            if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                            {
+                                found = 'true';
+                            }
+                        });
+                        if(found == 'true')
+                        {
+                            $(this).show();
+
+                        }
+                        else
+                        {
+                            $(this).hide();
+
+                        }
+                    });
+                }
+            });
+        </script>
+
+        <tr>
                 <td>  <a class="dropdown" href=""></a></td>
                 <td>{{ pack.idPack }}</td>
                 <td>{{ pack.nomPack }}</td>

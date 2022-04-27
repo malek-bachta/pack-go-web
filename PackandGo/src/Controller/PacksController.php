@@ -108,4 +108,33 @@ class PacksController extends Controller
 
         return $this->redirectToRoute('app_packs_index', [], Response::HTTP_SEE_OTHER);
     }
+
+  /*
+    /**
+     * @param Request $request
+     * @return Response
+     * @Route("/SearchPacks",name="search")
+     *//*
+    public function Search(EntityManagerInterface $entityManager ,Request $request)
+    {
+        $search_array=array();
+        $Search = new Search();
+        $form1=$this->createForm(SearchType::class,$Search);
+        $form1->add('Search',SubmitType::class);
+        $form1->submit($request->request->get($form1->getName()));
+        if ($Search->getNom()!= null){
+            $search_array['nom']=$Search->getNom();
+        }
+        if ($Search->getBudget()!= null){
+            $search_array['budget']=floatval($Search->getBudget());
+        }
+        if ($form1->isSubmitted() && $form1->isValid()){
+            $Pack=$this->getDoctrine()->getRepository(Packs::class)->find($search_array);
+            return $this->render('packs/show.html.twig',
+                ['packs'=>$Pack ,
+                    'form'=>$form1->createView()
+                ]);
+        }
+    }
+*/
 }
