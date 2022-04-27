@@ -1,0 +1,124 @@
+
+{% block body %}
+
+    <link href="https://fonts.googleapis.com/css?family=Lato&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/datepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/OverlayScrollbars.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/icofont.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/slick-theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/slider-range.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/tippy.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/app.css') }}">
+    <div class="flight-list-box rt-mb-30 pt-30">
+        <h3 class="f-size-24 text-capitalize rt-mb-30  rt-semiblod">Passenger Info</h3>
+
+        <br>
+        <form action="#" class="rt-form rt-line-form flight-lable">
+            <div class="row">
+                <div class="col-md-6 rt-mb-30 ">
+                    <label for="fst-name">First Name : </label>
+
+                </div><!-- /.col-md-6 -->
+                <div class="col-md-6 rt-mb-30">
+                    <label for="lst-name">Last Name : </label>
+
+                </div><!-- /.col-md-6 -->
+                <div class="col-lg-6 rt-mb-30">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Gender</label>
+                            <br>
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="inlineRadio2s">Female</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="inlineRadio2ss">Male</label>
+                            </div>
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-6">
+                            <label for="st-date">date :  __/__/_____ </label>
+                        </div><!-- /.col-md-6 -->
+                    </div><!-- /.row -->
+                </div><!-- /.col-md-6 -->
+                <div class="col-md-6 rt-mb-30">
+                    <label for="select-2">ID :</label>
+
+                </div><!-- /.col-md-6 -->
+                <div class="col-md-6 rt-mb-30">
+                    <label for="id-number">ID Number :</label>
+                </div><!-- /.col-md-6 -->
+                <div class="col-lg-6 rt-mb-30">
+                    <label for="lst-name">Agency name : {{ list.nomagence}} </label>
+                </div><!-- /.col-md-6 -->
+
+                <div class="col-lg-6 rt-mb-30">
+                    <label for="lst-name">Your destination : {{ list.destination}} </label>
+                </div><!-- /.col-md-6 -->
+                <div class="col-lg-6 rt-mb-30">
+                    <label for="lst-name">Duration of the trip : {{ list.duree}} </label>
+                </div><!-- /.col-md-6 -->
+                <div class="col-lg-6 rt-mb-30">
+                    <label for="lst-name">Ticket price: {{ list.prix}} </label>
+                </div><!-- /.col-md-6 -->
+
+                <div class="col-md-6">
+                    <p class="f-size-14"> !!! Please ensure the ID is valid for at least 6 months
+                        after the date of departure.</p>
+                </div><!-- /.col-12 -->
+            </div><!-- /.row -->
+        </form>
+    </div><!-- /.flight-list-box -->
+    <div class="flight-list-box rt-mb-30 pt-30">
+        <h4 class="text-333 rt-semiblod">Contact Details</h4> <br>
+        <form action="#" class="rt-form rt-line-form flight-lable">
+            <div class="row">
+                <div class="col-md-6 rt-mb-30">
+                    <label for="contact-name">Contact name : </label>
+                </div><!-- /.col-md-6 -->
+                <div class="col-md-6 rt-mb-30">
+                    <label for="mbl-name">Mobile phone :  </label>
+
+                </div><!-- /.col-md-6 -->
+                <div class="col-md-6">
+                    <label for="eml-name">Email :             @     .   </label>
+                </div><!-- /.col-md-6 -->
+            </div><!-- /.row -->
+        </form>
+    </div><!-- /.flight-list-box -->
+
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="{{ asset('front/assets/js/jquery-2.2.4.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/moment.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/jquery.easing.1.3.js') }}"></script>
+    <script src="{{ asset('front/assets/js/imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/instafeed.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/waypoints.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/jquery.counterup.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/jquery.scrollUp.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/TweenMax.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/scrollax.min.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3&amp;key=AIzaSyCy7becgYuLwns3uumNm6WdBYkBpLfy44k"></script>
+    <script src="{{ asset('front/assets/js/wow.js') }}"></script>
+    <script src="{{ asset('front/assets/js/jquery.overlayScrollbars.min.js') }}"></script>
+    <script src=" {{ asset('front/assets/js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('front/assets/js/jquery.appear.js') }}"></script>
+    <script src="{{ asset('front/assets/js/select2.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/slick.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/slider-range.js') }}"></script>
+    <script src="{{ asset('front/assets/js/vivus.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/tippy.all.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/app.js') }}"></script>
+{% endblock %}
