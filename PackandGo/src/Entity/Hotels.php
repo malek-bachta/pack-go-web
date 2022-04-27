@@ -6,9 +6,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\HotelsRepository")
+ * @UniqueEntity(
+ *     fields={"email"},
+ *     message="cette adresse email est déja prise")
  */
 class Hotels
 {
@@ -30,21 +35,21 @@ class Hotels
 
     /**
      * @var string
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message="Hotel nom est obligatoire")
      * @ORM\Column(name="nomH", type="string", length=255, nullable=false)
      */
     private $nomh;
 
     /**
      * @var string
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message="categorie est obligatoire")
      * @ORM\Column(name="categorie", type="string", length=24, nullable=false)
      */
     private $categorie;
 
     /**
      * @var string
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message="adresse est obligatoire")
      * @ORM\Column(name="adresse", type="string", length=34, nullable=false)
      */
     private $adresse;
@@ -53,6 +58,8 @@ class Hotels
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=false)
+     * @Assert\Email(message="Type invalide")
+     * @Assert\NotBlank(message="Email est obligatoire")
      */
     private $email;
 

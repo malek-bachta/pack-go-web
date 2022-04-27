@@ -20,9 +20,7 @@
                 <div class="col-lg-7">
                     <div class="rt-duel-slider-main rt-mb-30">
                         <div class="single-main rtbgprefix-cover" style="background-image: url({{ asset('uploads/' ~ hotel.image) }})">
-                            <div class="inner-badge badge-bg-1 f-size-14 rt-strong">
-                                Last booked 12 mins ago
-                            </div><!-- /.inner-badge -->
+
                         </div><!-- /.single-main -->
 
                         <div class="single-main rtbgprefix-cover" style="background-image: url({{ asset('front/assets/images/all-img/hotel-slider-6.jpg') }})">
@@ -35,8 +33,8 @@
                 </div><!-- /.col-lg-7 -->
                 <div class="col-lg-5 mt-5 mt-lg-0">
                     <div class="hotel-inner-content">
-                        <h5 class="f-size-18 rt-medium">Candlewood Suites NYC -Times Square</h5>
-                        <p class="f-size-13"><span class="text-555">Times Square | 4.8 km from downtown</span> <span class="pl-2 text-777">| Near the subway</span></p>
+                        <h5 class="f-size-18 rt-medium">{{ hotel.nomh }}</h5>
+                        <p class="f-size-13"><span class="text-555">{{ hotel.adresse }}</span> <span class="pl-2 text-777">| Near the subway</span></p>
                         <p class="rt-mt-15 rt-mb-20">
                             <span class="badge rt-gradinet-badge pill rt-mr-10">4.3 <small>/5</small></span>
                             <span class="primary-color rt-mr-10">Excellent</span>
@@ -103,7 +101,7 @@
                                         <h4 class="f-size-18 rt-semiblod rt-mb-35 ">Services & Amenities</h4>
                                     </div><!-- /.inner-content -->
                                     <div class="media service-amitence-box rt-mb-30">
-                                        <img src="assets/images/all-img/hottel-cion-12.png" class="rt-pr-23" alt="hottel-cion">
+                                        <img src="{{ asset('front/assets/images/all-img/hottel-cion-12.png') }}" class="rt-pr-23" alt="hottel-cion">
                                         <div class="media-body rt-pl-23">
                                             <h5 class="f-size-16 rt-semiblod">Transportation Services</h5>
                                             <p class="f-size-13 text-333">
@@ -114,7 +112,7 @@
                                         </div>
                                     </div><!-- /.service-amitence-box -->
                                     <div class="media service-amitence-box rt-mb-30">
-                                        <img src="assets/images/all-img/hottel-cion-13.png" class="rt-pr-23" alt="hottel-cion">
+                                        <img src="{{ asset('front/assets/images/all-img/hottel-cion-13.png') }}" class="rt-pr-23" alt="hottel-cion">
                                         <div class="media-body rt-pl-23">
                                             <h5 class="f-size-16 rt-semiblod">General</h5>
                                             <p class="f-size-13 text-333">
@@ -129,7 +127,7 @@
                                         </div>
                                     </div><!-- /.service-amitence-box -->
                                     <div class="media service-amitence-box rt-mb-30">
-                                        <img src="assets/images/all-img/hottel-cion-15.png" class="rt-pr-23" alt="hottel-cion">
+                                        <img src="{{ asset('front/assets/images/all-img/hottel-cion-15.png') }}" class="rt-pr-23" alt="hottel-cion">
                                         <div class="media-body rt-pl-23">
                                             <h5 class="f-size-16 rt-semiblod">Food & Drink</h5>
                                             <p class="f-size-13 text-333">
@@ -140,7 +138,7 @@
                                         </div>
                                     </div><!-- /.service-amitence-box -->
                                     <div class="media service-amitence-box rt-mb-30">
-                                        <img src="assets/images/all-img/hottel-cion-14.png" class="rt-pr-23" alt="hottel-cion">
+                                        <img src="{{ asset('front/assets/images/all-img/hottel-cion-14.png') }}" class="rt-pr-23" alt="hottel-cion">
                                         <div class="media-body rt-pl-23">
                                             <h5 class="f-size-16 rt-semiblod">Front Desk Services</h5>
                                             <p class="f-size-13 text-333">

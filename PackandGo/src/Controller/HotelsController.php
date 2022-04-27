@@ -2,11 +2,15 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Rating;
 use App\Form\HotelFormType;
 use App\Form\RatingFormType;
-use App\Repository\WorkshopRepository;
+use App\Repository\HotelsRepository;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,12 +30,12 @@ class HotelsController extends AbstractController
     {
         $repo = $this->getDoctrine()
             ->getRepository(Hotels::class);
-        $hotels=$repo->findBy([],[
-            'nomh'=> 'asc']);
+        $hotels = $repo->findBy([], [
+            'nomh' => 'asc']);
 
-        $liste =$paginator->paginate(
+        $liste = $paginator->paginate(
             $hotels,
-            $request->query->getInt('page',1),
+            $request->query->getInt('page', 1),
             4
         );
         return $this->render('hotels/hotelListFront.html.twig', [
@@ -45,11 +49,11 @@ class HotelsController extends AbstractController
      */
     public function details($idh, Request $req)
     {
-        $repo=$this->getDoctrine()
+        $repo = $this->getDoctrine()
             ->getRepository(Hotels::class);
-        $hotels=$repo->find($idh);
-        $rating=new Rating();
-        $form=$this->createForm(RatingFormType::class,$rating);
+        $hotels = $repo->find($idh);
+        $rating = new Rating();
+        $form = $this->createForm(RatingFormType::class, $rating);
         $form->handleRequest($req);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -58,12 +62,10 @@ class HotelsController extends AbstractController
         }
 
         return $this->render('hotels/hoteldetails.html.twig', [
-            'hotel'=>$hotels,
+            'hotel' => $hotels,
             'rate' => $form->createView(),
         ]);
     }
-
-
 
 
     /**
@@ -81,16 +83,30 @@ class HotelsController extends AbstractController
     /**
      * @Route("/hotels/show", name="list_hotels")
      */
-    public function getAllHotels(): Response
+    public function getAllHotels(Request $request)
     {
         $repo = $this->getDoctrine()
             ->getRepository(Hotels::class);
-        $liste=$repo->findAll();
+        $liste = $repo->findAll();
         return $this->render('hotels/HotelList.html.twig', [
             'list' => $liste,
         ]);
     }
 
+
+    /**
+     * @Route("/hotels/show",name="searchname")
+     */
+    public function SearchHotelByName(Request $request)
+    {
+
+        $data = $request->get('search');
+        $repository = $this->getDoctrine()->getRepository(Hotels::class);
+        $hotel = $repository->findBy(['nomH' => $data]);
+        return $this->render('hotels/hoteldetails.html.twig', [
+            'hotel' => $hotel
+        ]);
+    }
 
 
     /**
@@ -98,12 +114,12 @@ class HotelsController extends AbstractController
      */
     public function addHotel(Request $req)
     {
-        $hotels=new Hotels();
-        $form=$this->createForm(HotelFormType::class,$hotels);
+        $hotels = new Hotels();
+        $form = $this->createForm(HotelFormType::class, $hotels);
         $form->handleRequest($req);
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $form->get("image")->getData();
-            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+            $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
             $file->move(
                 $this->getParameter('$uploads'),
                 $fileName);
@@ -131,15 +147,15 @@ class HotelsController extends AbstractController
     /**
      * @Route("/hotels/update/{idh}", name="update_hotel")
      */
-    public function updateHotel($idh,Request $req): Response
+    public function updateHotel($idh, Request $req): Response
     {
-        $repo=$this->getDoctrine()->getRepository(hotels::class);
-        $hotels=$repo->find($idh);
-        $form=$this->createForm(HotelFormType::class,$hotels);
+        $repo = $this->getDoctrine()->getRepository(hotels::class);
+        $hotels = $repo->find($idh);
+        $form = $this->createForm(HotelFormType::class, $hotels);
         $form->handleRequest($req);
         if ($form->isSubmitted()) {
             $file = $form->get("image")->getData();
-            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+            $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
             $file->move(
                 $this->getParameter('$uploads'),
                 $fileName);
@@ -158,33 +174,79 @@ class HotelsController extends AbstractController
      * @Route("/hotels/delete/{idh}", name="delete_hotel")
      */
     public function deleteHotel($idh): Response
-    {    $repo=$this->getDoctrine()->getRepository(hotels::class);
-        $hotels=$repo->find($idh);
-        $em=$this->getDoctrine()->getManager();
+    {
+        $repo = $this->getDoctrine()->getRepository(hotels::class);
+        $hotels = $repo->find($idh);
+        $em = $this->getDoctrine()->getManager();
         $em->remove($hotels);
         $em->flush();
         return $this->redirectToRoute("list_hotels");
 
     }
 
+
     /**
-     * @Route("/cat85a2d8d", name="searchformation")
+     * @Route("/hotels/pdf/{idh}", name="pdf" )
      */
-    public function search(Request $request): Response
+    public function pdf($idh, HotelsRepository $repo): Response
     {
-        $em = $this->getDoctrine()->getManager();
-        $input = $request->get('search');
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
 
-        $tab = $em->getRepository(Hotels::class)->search($input);
-        return $this->render('hotels/HotelList.html.twig', [
-
-            'result' => $tab,
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+        $hotel = $repo->find($idh);
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('hotels/pdfhotel.html.twig', [
+            'list' => $hotel,
         ]);
+
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("HotelPDF.pdf", [
+            "Attachment" => true
+        ]);
+
+
+        return $this;
     }
 
+    /**
+     * @Route("/hotels/mail", name="mail" , methods={"GET","POST"})
+     */
+    public function index(Request $request, EntityManagerInterface $entityManager, \Swift_Mailer $mailer)
+    {
+        $hotel = new Hotels();
+        $form = $this->createForm(HotelFormType::class, $hotel);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($hotel);
+            $entityManager->flush();
+            $message = (new \Swift_Message('Nouvelle NOtification'))
+                ->setFrom('malek.bachtaa@gmail.com')
+                ->setTo('malek.bachtai@esprit.tn')
+                ->setBody('this is a verfication ');
+            $mailer->send($message);
+            $this->addFlash('message', 'la reclamation a ete bien envoye');
+
+            return $this->redirectToRoute('test');
+        }
+
+        return $this->render('hotel/new.html.twig', [
+            'hotel' => $hotel,
+            'form' => $form->createView(),
+        ]);
 
 
-
-
-
+    }
 }

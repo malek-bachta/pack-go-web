@@ -2,10 +2,12 @@
 
 {% block title %}Hotels Managment{% endblock %}
 {% block search %}
+<form method="get" action="{{ path('searchname')}}">
     <div class="input-group search-area">
         <input type="text" class="form-control" placeholder="" name="search">
-        <span class="input-group-text"><a href=""><i class="flaticon-381-search-2"></i></a></span>
+        <span class="input-group-text"><a href="" type="submit"><i class="flaticon-381-search-2"></i></a></span>
     </div>
+</form>
 {% endblock %}
 {% block body %}
 
@@ -58,6 +60,7 @@
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item" href="{{ path('update_hotel', {'idh':h.idh}) }}">Edit</a>
                                                     <a class="dropdown-item" href="{{ path('delete_hotel', {'idh':h.idh}) }}">Delete</a>
+                                                    <a class="dropdown-item" href="{{ path('pdf', {'idh':h.idh}) }}">Print</a>
                                                 </div>
                                             </div>
                                         </td>
