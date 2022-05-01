@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Hotels;
 use App\Entity\Services;
+use App\Repository\ServicesRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -35,7 +36,12 @@ class HotelFormType extends AbstractType
             ]])
             ->add('service', EntityType::class, [
                 'class' => Services::class,
-                'choice_label' => 'formule', ])
+                'query_builder' => function (ServicesRepository $sr) {
+                    return $sr->createQueryBuilder('service')
+                        ->orderBy('service.formule', 'ASC');
+                },
+                'choice_label' => 'formule',
+                ]);
 
 
 

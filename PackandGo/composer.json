@@ -28,9 +28,11 @@
         "symfony/yaml": "4.4.*"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^3.4",
+
         "symfony/maker-bundle": "^1.38",
-        "symfony/web-server-bundle": "4.4.*"
+        "symfony/web-server-bundle": "4.4.*",
+        "doctrine/doctrine-fixtures-bundle": "dev-master",
+        "doctrine/data-fixtures": "dev-master"
     },
     "config": {
         "allow-plugins": {

@@ -3,7 +3,7 @@ window.onload = () => {
     const stars = document.querySelectorAll(".la-star");
     
     // On va chercher l'input
-    const note = document.querySelector("#note");
+    const rating_form_rate = document.querySelector("#rating_form_rate");
 
     // On boucle sur les étoiles pour le ajouter des écouteurs d'évènements
     for(star of stars){
@@ -28,21 +28,21 @@ window.onload = () => {
 
         // On écoute le clic
         star.addEventListener("click", function(){
-            note.value = this.dataset.value;
+            rating_form_rate.value = this.dataset.value;
         });
 
         star.addEventListener("mouseout", function(){
-            resetStars(note.value);
+            resetStars(rating_form_rate.value);
         });
     }
 
     /**
-     * Reset des étoiles en vérifiant la note dans l'input caché
-     * @param {number} note 
+     * Reset des étoiles en vérifiant la rating_form_rate dans l'input caché
+     * @param {number} rating_form_rate
      */
-    function resetStars(note = 0){
+    function resetStars(rating_form_rate = 0){
         for(star of stars){
-            if(star.dataset.value > note){
+            if(star.dataset.value > rating_form_rate){
                 star.style.color = "black";
                 star.classList.add("lar");
                 star.classList.remove("las");

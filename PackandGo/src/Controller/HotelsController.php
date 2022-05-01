@@ -220,33 +220,5 @@ class HotelsController extends AbstractController
         return $this;
     }
 
-    /**
-     * @Route("/hotels/mail", name="mail" , methods={"GET","POST"})
-     */
-    public function index(Request $request, EntityManagerInterface $entityManager, \Swift_Mailer $mailer)
-    {
-        $hotel = new Hotels();
-        $form = $this->createForm(HotelFormType::class, $hotel);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($hotel);
-            $entityManager->flush();
-            $message = (new \Swift_Message('Nouvelle NOtification'))
-                ->setFrom('malek.bachtaa@gmail.com')
-                ->setTo('malek.bachtai@esprit.tn')
-                ->setBody('this is a verfication ');
-            $mailer->send($message);
-            $this->addFlash('message', 'la reclamation a ete bien envoye');
-
-            return $this->redirectToRoute('test');
-        }
-
-        return $this->render('hotel/new.html.twig', [
-            'hotel' => $hotel,
-            'form' => $form->createView(),
-        ]);
-
-
-    }
 }
