@@ -52,7 +52,7 @@ class TransportController extends AbstractController
         $liste =$paginator->paginate(
             $liste,
             $request->query->getInt('page',1),
-            8
+            6
         );
         return $this->render('transport/flight.html.twig', [
             'list' => $liste,
