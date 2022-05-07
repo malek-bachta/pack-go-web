@@ -61,7 +61,6 @@ class GuideController extends AbstractController
         $repo=$this->getDoctrine()->getRepository(guide::class);
         $guide=$repo->find($id);
         $form=$this->createForm(GuideFormType::class,$guide);
-        $form->add('Update', SubmitType::class);
         $form->handleRequest($req);
         if ($form->isSubmitted()) {
             $em = $this->getDoctrine()->getManager();

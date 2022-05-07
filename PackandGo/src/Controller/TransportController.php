@@ -123,7 +123,6 @@ class TransportController extends AbstractController
         $repo=$this->getDoctrine()->getRepository(transport::class);
         $transport=$repo->find($id);
         $form=$this->createForm(TransportFormType::class,$transport);
-        $form->add('Update', SubmitType::class);
         $form->handleRequest($req);
         if ($form->isSubmitted()) {
             $em = $this->getDoctrine()->getManager();
