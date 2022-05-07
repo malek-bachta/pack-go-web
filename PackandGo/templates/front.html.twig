@@ -94,6 +94,7 @@
                             <li><a href="service-1.html">Services</a></li>
                             <li><a href="{{ path('list_transport1') }}">Flights</a></li>
 
+
                         </ul>
                         <div class="mobile-menu">
                             <div class="menu-click">
@@ -219,6 +220,7 @@
 
                         <div class="rt-banner-searchbox standard-search wow fade-in-bottom" data-wow-duration="1s" data-wow-delay="1s">
                             <div class="tab-content" id="myTabContent">
+
                                 <div class="tab-pane show active" id="rt-item_a_first" role="tabpanel" aria-labelledby="rt-item_a_first">
                                     <form action="#">
                                         <div class="rt-radio-group">
@@ -300,7 +302,7 @@
                                         </div><!-- /.rt-input-group -->
                                     </form><!-- ./ form -->
                                 </div>
-                                <div class="tab-pane  rtIncative" id="rt-item_a_second" role="tabpanel" aria-labelledby="rt-item_a_second">
+                                {% block search %}<div class="tab-pane  rtIncative" id="rt-item_a_second" role="tabpanel" aria-labelledby="rt-item_a_second">
                                     <form action="#">
                                         <div class="rt-radio-group">
                                             <div class="dropdown form-check-inline rt-searchlink">
@@ -337,7 +339,7 @@
                                             </div><!-- /.single-input -->
                                         </div><!-- /.rt-input-group -->
                                     </form><!-- ./ form -->
-                                </div>
+                                </div>{% endblock %}
                                 <div class="tab-pane  rtIncative" id="rt-item_a_third" role="tabpanel" aria-labelledby="rt-item_a_third">
                                     <form action="#">
 
@@ -402,6 +404,7 @@
                                         </div><!-- /.rt-input-group -->
                                     </form><!-- ./ form -->
                                 </div>
+
                             </div>
                         </div><!-- /.rt-banner-searchbox -->
 

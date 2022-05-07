@@ -65,6 +65,7 @@ class Hotels
 
     /**
      * @var int
+
      *
      * @ORM\Column(name="telH", type="integer", nullable=false)
      */
@@ -257,3 +258,4 @@ class Hotels
 
 
 }
+

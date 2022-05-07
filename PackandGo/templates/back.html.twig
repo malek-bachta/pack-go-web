@@ -110,8 +110,7 @@ php<!DOCTYPE html>
                         </div>
                     </div>
                     <div class="nav-item d-flex align-items-center">
-                      {% block search %}{% endblock %}
-
+                        {% block search %}{% endblock %}
                     </div>
                     <ul class="navbar-nav header-right">
                         <li class="nav-item dropdown notification_dropdown">
@@ -216,7 +215,6 @@ php<!DOCTYPE html>
     <!--**********************************
         Sidebar start
     ***********************************-->
-    {% block sidebar %} {% endblock %}
 
     <div class="dlabnav">
         <div class="dlabnav-scroll">
@@ -238,16 +236,16 @@ php<!DOCTYPE html>
                 </li>
                 <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                         <i class="flaticon-050-info"></i>
-                        <span class="nav-text">malek</span>
+                        <span class="nav-text">Hotel Managment</span>
                     </a>
                     <ul aria-expanded="false">
-                        <li><a href="app-profile.html">Profile</a></li>
-                        <li><a href="post-details.html">Post Details</a></li>
-                        <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Email</a>
-                            <ul aria-expanded="false">
-                                <li><a href="email-compose.html">Compose</a></li>
-                                <li><a href="email-inbox.html">Inbox</a></li>
-                                <li><a href="email-read.html">Read</a></li>
+                        <li><a href="{{ path('add_hotel')}}">Add Hotel</a></li>
+                        <li><a href="{{ path('list_hotels')}}">Hotel List</a></li>
+                       <!-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Email</a>
+                            <ul aria-expanded="false">-->
+                                <li><a href="{{ path('add_service') }}">Add Service </a></li>
+                                <li><a href="{{ path('list_service') }}">Show Service</a></li>
+                               <!-- <li><a href="email-read.html">Read</a></li>
                             </ul>
                         </li>
                         <li><a href="app-calender.html">Calendar</a></li>
@@ -261,7 +259,7 @@ php<!DOCTYPE html>
                                 <li><a href="ecom-invoice.html">Invoice</a></li>
                                 <li><a href="ecom-customers.html">Customers</a></li>
                             </ul>
-                        </li>
+                        </li>-->
                     </ul>
                 </li>
                 <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
