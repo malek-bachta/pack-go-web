@@ -2,6 +2,13 @@
 
 {% block title %}Hotels Managment{% endblock %}
 
+{% block search %}
+    <script src="{{ asset('back/js/jquery.min.js') }}"></script>
+    <div class="input-group search-area">
+        <input type="text" class="form-control" placeholder="Search…" aria-label="Search" id="search">
+        <span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
+    </div>
+{% endblock %}
 {% block body %}
 
     <div class="content-body">
@@ -18,8 +25,6 @@
                     <div class="card">
 
                         <div class="card-body">
-                            <script src="{{ asset('back/js/jquery.min.js') }}"></script>
-                            <input type="text" class="form-control" placeholder="Search…" aria-label="Search"id="search">
                             <div class="table-responsive">
                                 <table class="table table-responsive-md" id="tableac">
                                     <thead>
