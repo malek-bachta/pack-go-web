@@ -1,0 +1,108 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}transport Managment{% endblock %}
+{% block search %}
+<div class="input-group search-area">
+    <script src="{{ asset('back/js/jquery.min.js') }}"></script>
+    <input type="text" class="form-control" placeholder="" aria-label="Search" id="search"  >
+    <span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
+</div>
+{% endblock %}
+{% block body %}
+
+    <div class="content-body">
+        <div class="container-fluid">
+            <div class="row page-titles">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active"><a href="javascript:void(0)">transport List</a></li>
+                </ol>
+            </div>
+            <!-- row -->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-responsive-md" id="tableac">
+                                    <thead>
+                                    <tr>
+                                        <th style="width:80px;"><strong>#</strong></th>
+                                        <th><strong>TRANSPORT TYPE</strong></th>
+                                        <th><strong>AGENCY NAME</strong></th>
+                                        <th><strong>PRICE</strong></th>
+                                        <th><strong>DURATION</strong></th>
+                                        <th><strong>DESTINATION</strong></th>
+
+
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="all">
+                                    {% for t in list %}
+                                    <tr>
+
+                                        <td><strong>{{ t.id }}</strong></td>
+                                        <td>{{ t.type }}</td>
+                                        <td><a class="dropdown" href="">{{ t.nomagence }}</a> </td>
+                                        <td>{{ t.prix }}</td>
+                                        <td>{{ t.duree }}</td>
+                                        <td>{{ t.destination }}</td>
+
+
+
+                                        <td>
+                                            <div class="dropdown">
+                                                <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">
+                                                    <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="{{ path('update_transport',{'id':t.id}) }}">Edit</a>
+                                                    <a class="dropdown-item" href="{{ path('delete_transport',{'id':t.id}) }}">Delete</a>
+                                                    <a class="dropdown-item" href="{{ path('details',{'id':t.id}) }}">print</a>
+
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    </tbody{% endfor %}>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('#search').keyup(function(){
+                search_table($(this).val());
+            });
+            function search_table(value){
+                $('#tableac tbody tr').each(function(){
+                    var found = 'false';
+                    $(this).each(function(){
+                        if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                        {
+                            found = 'true';
+                        }
+                    });
+                    if(found == 'true')
+                    {
+                        $(this).show();
+
+                    }
+                    else
+                    {
+                        $(this).hide();
+
+                    }
+                });
+            }
+        });
+    </script>
+
+
+{% endblock %}

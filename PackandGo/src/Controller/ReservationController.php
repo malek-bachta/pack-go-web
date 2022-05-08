@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ReservationController extends AbstractController
 {
     /**
-     * @Route("/", name="app_reservation_index")
+     * @Route("/a", name="app_reservation_index")
      */
     public function index(EntityManagerInterface $entityManager): Response
     {
