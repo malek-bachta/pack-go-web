@@ -1,0 +1,108 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Packs index{% endblock %}
+
+{% block body %}
+    <h1>Packs index</h1>
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="row page-titles">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">PACKS</a></li>
+            </ol>
+        </div>
+        <!-- row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+
+                    <div class="card-body">
+                        <script src="{{ asset('back/js/jquery.min.js') }}"></script>
+                        <input type="text" class="form-control" placeholder="Search…" aria-label="Search"id="search">
+
+                        <div class="table-responsive">
+                            <table class="table table-responsive-md" id="tableac">
+
+
+        <thead>
+            <tr>
+                <th style="width:80px;"><strong>#</strong></th>
+                <th><strong>IdPack</strong></th>
+                <th><strong>NomPack</strong></th>
+                <th><strong>Texte</strong></th>
+                <th><strong>Service</strong></th>
+                <th><strong>Guide</strong></th>
+                <th><strong>Destination</strong></th>
+                <th><strong>BudgetPack</strong></th>
+                <th><strong>actions</strong></th>
+            </tr>
+        </thead>
+        <tbody id="all">
+        {% for pack in packs %}
+
+
+        <tr>
+                <td>  <a class="dropdown" href=""></a></td>
+                <td>{{ pack.idPack }}</td>
+                <td>{{ pack.nomPack }}</td>
+                <td>{{ pack.texte }}</td>
+                <td>{{ pack.service }}</td>
+                <td>{{ pack.guide }}</td>
+                <td>{{ pack.destination }}</td>
+                <td>{{ pack.offre.budget }}</td>
+                <td>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-danger light sharp" data-bs-toggle="dropdown">
+                            <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
+                        </button>
+                        <div class="dropdown-menu">
+                    <button class="btn-dark">  {{ include('packs/_delete_form.html.twig') }}</button>
+                    <a href="{{ path('app_packs_edit', {'idPack': pack.idPack}) }}">edit</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody{% endfor %}>
+
+                            </table>
+                        </div>
+
+                        <button class="btn-google"> <a href="{{ path('app_packs_new') }}">Create new</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script>
+        $(document).ready(function(){
+            $('#search').keyup(function(){
+                search_table($(this).val());
+            });
+            function search_table(value){
+                $('#tableac tbody tr').each(function(){
+                    var found = 'false';
+                    $(this).each(function(){
+                        if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                        {
+                            found = 'true';
+                        }
+                    });
+                    if(found == 'true')
+                    {
+                        $(this).show();
+
+                    }
+                    else
+                    {
+                        $(this).hide();
+
+                    }
+                });
+            }
+        });
+    </script>
+
+{% endblock %}
+

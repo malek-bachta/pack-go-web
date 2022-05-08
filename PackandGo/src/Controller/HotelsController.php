@@ -14,7 +14,6 @@ use Dompdf\Options;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Hotels;
@@ -94,8 +93,6 @@ class HotelsController extends AbstractController
             'list' => $liste,
         ]);
     }
-
-
     /**
      * @Route("/hotels/show",name="searchname")
      */

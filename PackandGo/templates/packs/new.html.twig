@@ -1,0 +1,45 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}New Packs{% endblock %}
+
+{% block body %}
+<div class="content-body">
+    <div class="container-fluid">
+    <h1>Create new Packs</h1>
+        {{ form_start(form) }}
+        <label for="inputText" class="col-sm-4 col-form-label">Nom Pack</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.nomPack,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <label for="inputText" class="col-sm-4 col-form-label">Texte</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.texte,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <label for="inputText" class="col-sm-4 col-form-label">Service</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.service,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <label for="inputText" class="col-sm-4 col-form-label">Guide</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.guide,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <label for="inputText" class="col-sm-4 col-form-label">Destination</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.destination,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <label for="inputText" class="col-sm-4 col-form-label">Budget Pack</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.budgetPack,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <label for="inputText" class="col-sm-4 col-form-label">Offre</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.offre,{'attr':{'class':'form-control'}}) }}
+        </div>
+    </div>
+    <div class="col-sm-10">
+        <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+        <button class="btn btn-primary"> <a href="{{ path('app_packs_index') }}">Afficher</a></button>
+    </div>
+    {{ form_end(form) }}
+</div>
+        {% endblock %}

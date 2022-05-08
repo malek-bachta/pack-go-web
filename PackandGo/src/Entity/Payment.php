@@ -36,16 +36,6 @@ class Payment
     private $somme;
 
     /**
-     * @var \Hotels
-     *
-     * @ORM\ManyToOne(targetEntity="Hotels")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_hotel", referencedColumnName="idH")
-     * })
-     */
-    private $idHotel;
-
-    /**
      * @var \User
      *
      * @ORM\ManyToOne(targetEntity="User")
@@ -55,58 +45,15 @@ class Payment
      */
     private $idUser;
 
-    public function getIdP(): ?int
-    {
-        return $this->idP;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    public function getSomme(): ?float
-    {
-        return $this->somme;
-    }
-
-    public function setSomme(float $somme): self
-    {
-        $this->somme = $somme;
-
-        return $this;
-    }
-
-    public function getIdHotel(): ?Hotels
-    {
-        return $this->idHotel;
-    }
-
-    public function setIdHotel(?Hotels $idHotel): self
-    {
-        $this->idHotel = $idHotel;
-
-        return $this;
-    }
-
-    public function getIdUser(): ?User
-    {
-        return $this->idUser;
-    }
-
-    public function setIdUser(?User $idUser): self
-    {
-        $this->idUser = $idUser;
-
-        return $this;
-    }
+    /**
+     * @var \Hotels
+     *
+     * @ORM\ManyToOne(targetEntity="Hotels")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_hotel", referencedColumnName="idH")
+     * })
+     */
+    private $idHotel;
 
 
 }
