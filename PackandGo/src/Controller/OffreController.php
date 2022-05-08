@@ -17,7 +17,7 @@ use Dompdf\Options;
 class OffreController extends AbstractController
 {
     /**
-     * @Route("/", name="app_offre_index", methods={"GET"})
+     * @Route("/view", name="app_offre_index", methods={"GET"})
      */
     public function index(EntityManagerInterface $entityManager): Response
     {
