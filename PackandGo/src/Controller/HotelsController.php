@@ -28,6 +28,7 @@ class HotelsController extends AbstractController
      */
     public function showHotels(Request $request, PaginatorInterface $paginator)
     {
+
         $repo = $this->getDoctrine()
             ->getRepository(Hotels::class);
         $hotels = $repo->findBy([], [
@@ -40,6 +41,7 @@ class HotelsController extends AbstractController
         );
         return $this->render('hotels/hotelListFront.html.twig', [
             'list' => $liste,
+
         ]);
     }
 
@@ -219,6 +221,7 @@ class HotelsController extends AbstractController
 
         return $this;
     }
+
 
 
 }
