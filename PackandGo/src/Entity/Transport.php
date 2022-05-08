@@ -3,12 +3,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
- * Transport
- *
- * @ORM\Table(name="transport")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\TransportRepository")
  */
 class Transport
 {
@@ -23,14 +20,14 @@ class Transport
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="type", type="string", length=255, nullable=false)
      */
     private $type;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="nomagence", type="string", length=255, nullable=false)
      */
     private $nomagence;
@@ -44,17 +41,26 @@ class Transport
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="duree", type="string", length=255, nullable=false)
      */
     private $duree;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="destination", type="string", length=255, nullable=false)
      */
     private $destination;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Guide::class, inversedBy="transports")
+     * @ORM\JoinColumn(nullable=false, name="Guide", referencedColumnName="id")
+     */
+    private $guide;
+
+
+
 
     public function getId(): ?int
     {
@@ -120,6 +126,19 @@ class Transport
 
         return $this;
     }
+
+    public function getGuide(): ?guide
+    {
+        return $this->guide;
+    }
+
+    public function setGuide(?guide $guide): self
+    {
+        $this->guide = $guide;
+
+        return $this;
+    }
+
 
 
 }

@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Guide
@@ -23,21 +26,21 @@ class Guide
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="nom", type="string", length=50, nullable=false)
      */
     private $nom;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="prenom", type="string", length=50, nullable=false)
      */
     private $prenom;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="type", type="string", length=50, nullable=false)
      */
     private $type;
@@ -48,6 +51,17 @@ class Guide
      * @ORM\Column(name="prix", type="float", precision=10, scale=0, nullable=false)
      */
     private $prix;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Transport::class, mappedBy="Guide")
+     */
+    private $transports;
+
+    public function __construct()
+    {
+        $this->transports = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -101,6 +115,37 @@ class Guide
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Transport>
+     */
+    public function getTransports(): Collection
+    {
+        return $this->transports;
+    }
+
+    public function addTransport(Transport $transport): self
+    {
+        if (!$this->transports->contains($transport)) {
+            $this->transports[] = $transport;
+            $transport->setGuide($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTransport(Transport $transport): self
+    {
+        if ($this->transports->removeElement($transport)) {
+            // set the owning side to null (unless already changed)
+            if ($transport->getGuide() === $this) {
+                $transport->setGuide(null);
+            }
+        }
+
+        return $this;
+    }
+
 
 
 }

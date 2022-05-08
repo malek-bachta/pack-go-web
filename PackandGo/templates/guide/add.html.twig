@@ -1,0 +1,102 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Guide Managment{% endblock %}
+
+{% block body %}
+
+
+    <!--**********************************
+           Content body start
+       ***********************************-->
+    <div class="content-body">
+        <div class="container-fluid">
+            <div class="row page-titles">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Add Guide</a></li>
+                </ol>
+            </div>
+            <!-- row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        {{ form_start(form) }}
+                        <div class="card-body">
+                            <div class="form-validation">
+                                <form class="needs-validation" novalidate >
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom01">Guide last name
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    {{ form_row(form.nom, {'attr' :{'class': "form-control"}}) }}
+                                                    <div class="invalid-feedback">
+                                                        Please enter a guide last name.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom02">Guide First Name <span
+                                                            class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    {{ form_row(form.prenom, {'attr' :{'class': "form-control"}}) }}
+
+                                                    <div class="invalid-feedback">
+                                                        Please enter a Guide first name.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom03">type
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    {{ form_row(form.type, {'attr' :{'class': "form-control"}}) }}
+                                                    <div class="invalid-feedback">
+                                                        Please enter a type.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom04">Price <span
+                                                            class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    {{ form_row(form.prix, {'attr' :{'class': "form-control"}}) }}
+                                                    <div class="invalid-feedback">
+                                                        Please enter the Duration.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="mb-3 row">
+                                            <div class="col-lg-8 ms-auto">
+                                                <button type="submit" class="btn btn-primary">Submit{{ form_end(form) }}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!--**********************************
+        Content body end
+    ***********************************-->
+
+
+
+
+{% endblock %}

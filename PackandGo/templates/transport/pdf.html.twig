@@ -1,0 +1,83 @@
+
+{% block body %}
+
+
+    <div class="flight-list-box rt-mb-30 pt-30">
+        <h3 class="f-size-24 text-capitalize rt-mb-30  rt-semiblod">Passenger Info</h3>
+
+        <br>
+        <form action="#" class="rt-form rt-line-form flight-lable">
+            <div class="row">
+                <div class="col-md-6 rt-mb-30 ">
+                    <label for="fst-name">First Name : </label>
+
+                </div><!-- /.col-md-6 -->
+                <div class="col-md-6 rt-mb-30">
+                    <label for="lst-name">Last Name : </label>
+
+                </div><!-- /.col-md-6 -->
+                <div class="col-lg-6 rt-mb-30">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Gender</label>
+                            <br>
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="inlineRadio2s">Female</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="inlineRadio2ss">Male</label>
+                            </div>
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-6">
+                            <label for="st-date">date :  __/__/_____ </label>
+                        </div><!-- /.col-md-6 -->
+                    </div><!-- /.row -->
+                </div><!-- /.col-md-6 -->
+                <div class="col-md-6 rt-mb-30">
+                    <label for="select-2">ID :</label>
+
+                </div><!-- /.col-md-6 -->
+                <div class="col-md-6 rt-mb-30">
+                    <label for="id-number">ID Number :</label>
+                </div><!-- /.col-md-6 -->
+                <div class="col-lg-6 rt-mb-30">
+                    <label for="lst-name">Agency name : {{ list.nomagence}} </label>
+                </div><!-- /.col-md-6 -->
+
+                <div class="col-lg-6 rt-mb-30">
+                    <label for="lst-name">Your destination : {{ list.destination}} </label>
+                </div><!-- /.col-md-6 -->
+                <div class="col-lg-6 rt-mb-30">
+                    <label for="lst-name">Duration of the trip : {{ list.duree}} </label>
+                </div><!-- /.col-md-6 -->
+                <div class="col-lg-6 rt-mb-30">
+                    <label for="lst-name">Ticket price: {{ list.prix}} </label>
+                </div><!-- /.col-md-6 -->
+
+                <div class="col-md-6">
+                    <p class="f-size-14"> !!! Please ensure the ID is valid for at least 6 months
+                        after the date of departure.</p>
+                </div><!-- /.col-12 -->
+            </div><!-- /.row -->
+        </form>
+    </div><!-- /.flight-list-box -->
+    <div class="flight-list-box rt-mb-30 pt-30">
+        <h4 class="text-333 rt-semiblod">Contact Details</h4> <br>
+        <form action="#" class="rt-form rt-line-form flight-lable">
+            <div class="row">
+                <div class="col-md-6 rt-mb-30">
+                    <label for="contact-name">Contact name : </label>
+                </div><!-- /.col-md-6 -->
+                <div class="col-md-6 rt-mb-30">
+                    <label for="mbl-name">Mobile phone :  </label>
+
+                </div><!-- /.col-md-6 -->
+                <div class="col-md-6">
+                    <label for="eml-name">Email :             @     .   </label>
+                </div><!-- /.col-md-6 -->
+            </div><!-- /.row -->
+        </form>
+    </div><!-- /.flight-list-box -->
+
+
+{% endblock %}
