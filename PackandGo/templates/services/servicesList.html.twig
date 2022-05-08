@@ -1,0 +1,103 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Service Managment{% endblock %}
+{% block search %}
+    <script src="{{ asset('back/js/jquery.min.js') }}"></script>
+    <div class="input-group search-area">
+        <input type="text" class="form-control" placeholder="Search…" aria-label="Search" id="search">
+        <span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
+    </div>
+{% endblock %}
+{% block body %}
+
+    <div class="content-body">
+        <div class="container-fluid">
+            <div class="row page-titles">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active"><a href="javascript:void(0)">service List</a></li>
+                </ol>
+            </div>
+            <!-- row -->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Recent Payments Queue</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                    <table class="table table-responsive-md" id="tableac">
+                                    <thead>
+                                    <tr>
+                                        <th style="width:80px;"><strong>#</strong></th>
+                                        <th><strong>Formule</strong></th>
+                                        <th><strong>Price</strong></th>
+                                        <th><strong>Stay</strong></th>
+                                        <th><strong>Activity</strong></th>
+                                        <th><strong>State</strong></th>
+
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="all">
+                                    {% for S in liste %}
+                                    <tr>
+                                        <td><strong>{{ S.idS }}</strong></td>
+                                        <td><a class="dropdown" href="">{{ S.formule }}</a> </td>
+                                        <td>{{ S.prix }}</td>
+                                        <td>{{ S.sejours }}</td>
+                                        <td>{{ S.activite }}</td>
+                                        <td>{{ S.etat }}</td>
+
+                                        <td>
+                                            <div class="dropdown">
+                                                <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">
+                                                    <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="{{ path('update_service', {'idS':S.idS}) }}">Edit</a>
+                                                    <a class="dropdown-item" href="{{ path('delete_service', {'idS':S.idS}) }}">Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody{% endfor %}>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('#search').keyup(function(){
+                search_table($(this).val());
+            });
+            function search_table(value){
+                $('#tableac tbody tr').each(function(){
+                    var found = 'false';
+                    $(this).each(function(){
+                        if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                        {
+                            found = 'true';
+                        }
+                    });
+                    if(found == 'true')
+                    {
+                        $(this).show();
+
+                    }
+                    else
+                    {
+                        $(this).hide();
+
+                    }
+                });
+            }
+        });
+    </script>
+
+{% endblock %}

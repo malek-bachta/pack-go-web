@@ -5,12 +5,15 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
- * Hotels
- *
- * @ORM\Table(name="hotels")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\HotelsRepository")
+ * @UniqueEntity(
+ *     fields={"email"},
+ *     message="cette adresse email est déja prise")
  */
 class Hotels
 {
@@ -21,7 +24,7 @@ class Hotels
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idh;
+    private $idH;
 
     /**
      * @var int|null
@@ -32,21 +35,21 @@ class Hotels
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Hotel nom est obligatoire")
      * @ORM\Column(name="nomH", type="string", length=255, nullable=false)
      */
     private $nomh;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="categorie est obligatoire")
      * @ORM\Column(name="categorie", type="string", length=24, nullable=false)
      */
     private $categorie;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="adresse est obligatoire")
      * @ORM\Column(name="adresse", type="string", length=34, nullable=false)
      */
     private $adresse;
@@ -55,11 +58,14 @@ class Hotels
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=false)
+     * @Assert\Email(message="Type invalide")
+     * @Assert\NotBlank(message="Email est obligatoire")
      */
     private $email;
 
     /**
      * @var int
+
      *
      * @ORM\Column(name="telH", type="integer", nullable=false)
      */
@@ -67,31 +73,43 @@ class Hotels
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="equipement", type="string", length=255, nullable=false)
      */
     private $equipement;
 
     /**
      * @var string|null
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
     private $image;
 
     /**
-     * @ORM\OneToMany(targetEntity=Services::class, mappedBy="idhotel")
+     * @ORM\ManyToOne(targetEntity=Services::class, inversedBy="hotels")
+     * @ORM\JoinColumn(nullable=false, name="Service", referencedColumnName="idS")
      */
-    private $services;
+    private $service;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Rating::class, mappedBy="hotel")
+     */
+    private $ratings;
 
     public function __construct()
     {
-        $this->services = new ArrayCollection();
+        $this->ratings = new ArrayCollection();
     }
 
-    public function getIdh(): ?int
+
+
+
+
+
+
+    public function getIdH(): ?int
     {
-        return $this->idh;
+        return $this->idH;
     }
 
     public function getIdContacth(): ?int
@@ -190,35 +208,53 @@ class Hotels
         return $this;
     }
 
-    /**
-     * @return Collection<int, Services>
-     */
-    public function getServices(): Collection
+    public function getService(): ?Services
     {
-        return $this->services;
+        return $this->service;
     }
 
-    public function addService(Services $service): self
+    public function setService(?Services $service): self
     {
-        if (!$this->services->contains($service)) {
-            $this->services[] = $service;
-            $service->setIdhotel($this);
+        $this->service = $service;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Rating>
+     */
+    public function getRatings(): Collection
+    {
+        return $this->ratings;
+    }
+
+    public function addRating(Rating $rating): self
+    {
+        if (!$this->ratings->contains($rating)) {
+            $this->ratings[] = $rating;
+            $rating->setHotel($this);
         }
 
         return $this;
     }
 
-    public function removeService(Services $service): self
+    public function removeRating(Rating $rating): self
     {
-        if ($this->services->removeElement($service)) {
+        if ($this->ratings->removeElement($rating)) {
             // set the owning side to null (unless already changed)
-            if ($service->getIdhotel() === $this) {
-                $service->setIdhotel(null);
+            if ($rating->getHotel() === $this) {
+                $rating->setHotel(null);
             }
         }
 
         return $this;
     }
+
+
+
+
+
+
 
 
 }
