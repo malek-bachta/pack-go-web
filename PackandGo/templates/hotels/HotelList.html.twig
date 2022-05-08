@@ -1,14 +1,7 @@
 {% extends 'back.html.twig' %}
 
 {% block title %}Hotels Managment{% endblock %}
-{% block search %}
-<form method="get" action="{{ path('searchname')}}">
-    <div class="input-group search-area">
-        <input type="text" class="form-control" placeholder="" name="search">
-        <span class="input-group-text"><a href="" type="submit"><i class="flaticon-381-search-2"></i></a></span>
-    </div>
-</form>
-{% endblock %}
+
 {% block body %}
 
     <div class="content-body">
@@ -23,12 +16,12 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Recent Payments Queue</h4>
-                        </div>
+
                         <div class="card-body">
+                            <script src="{{ asset('back/js/jquery.min.js') }}"></script>
+                            <input type="text" class="form-control" placeholder="Search…" aria-label="Search"id="search">
                             <div class="table-responsive">
-                                <table class="table table-responsive-md">
+                                <table class="table table-responsive-md" id="tableac">
                                     <thead>
                                     <tr>
                                         <th style="width:80px;"><strong>#</strong></th>
@@ -42,7 +35,8 @@
                                         <th></th>
                                     </tr>
                                     </thead>
-                                    <tbody{% for h in list %}>
+                                    <tbody id="all">
+                                    {% for h in list %}
                                     <tr>
                                         <td><strong>{{ h.idh }}</strong></td>
                                         <td><a class="dropdown" href="">{{ h.nomh }}</a> </td>
@@ -74,5 +68,32 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function(){
+            $('#search').keyup(function(){
+                search_table($(this).val());
+            });
+            function search_table(value){
+                $('#tableac tbody tr').each(function(){
+                    var found = 'false';
+                    $(this).each(function(){
+                        if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                        {
+                            found = 'true';
+                        }
+                    });
+                    if(found == 'true')
+                    {
+                        $(this).show();
 
+                    }
+                    else
+                    {
+                        $(this).hide();
+
+                    }
+                });
+            }
+        });
+    </script>
 {% endblock %}
