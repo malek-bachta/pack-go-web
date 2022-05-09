@@ -1,0 +1,22 @@
+{% extends 'front.html.twig' %}
+
+{% block title %} Mes Reclamations{% endblock %}
+
+{% block body %}
+    {% for r in reclamations %}
+        <div class="services-box-1 wow fade-in-bottom" data-wow-duration="1.5s">
+            <div class="services-thumb">
+                <img src="{{ asset('front/assets/images/service-icons/s_icon_2.png') }}" alt="" draggable="false">
+            </div><!-- /.services-thumb -->
+            <h4>{{ r.sujet }}</h4>
+            <p>
+                Contenue : {{ r.contenue }}<br>
+                Etat : {{ r.etat }}<br>
+                <a href="{{ path('reclamation_delete', {'id': r.idReclamation}) }} " class="btn btn-secondary">Delete</a>
+                <a href="{{ path('reclamation_edit', {'idReclamation': r.idReclamation}) }}" class="btn btn-danger">Edit</a>
+            </p>
+        </div>
+
+    {% endfor %}
+
+{% endblock %}

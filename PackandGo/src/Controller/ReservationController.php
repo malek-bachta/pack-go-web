@@ -33,7 +33,22 @@ class ReservationController extends AbstractController
 
 
     /**
-     * @Route("/test", name="test", methods={"GET"})
+     * @Route("/mesReservation", name="mes_reservation_index")
+     */
+    public function reservationFront(EntityManagerInterface $entityManager): Response
+    {
+        $reservations = $entityManager
+            ->getRepository(Reservation::class)
+            ->findBy(array('idU'=>$this->getUser()));
+
+        return $this->render('reservation/front.html.twig', [
+            'reservations' => $reservations,
+        ]);
+    }
+
+
+    /**
+     * @Route("/front", name="front", methods={"GET"})
      */
     public function test(EntityManagerInterface $entityManager): Response
     {
@@ -46,6 +61,20 @@ class ReservationController extends AbstractController
         ]);
     }
 
+
+        /**
+     * @Route("/back", name="back", methods={"GET"})
+     */
+    public function back(EntityManagerInterface $entityManager): Response
+    {
+        $reservations = $entityManager
+            ->getRepository(Reservation::class)
+            ->findAll();
+
+        return $this->render('back.html.twig', [
+            'reservations' => $reservations,
+        ]);
+    }
     /**
      * @Route("/new", name="app_reservation_new", methods={"GET", "POST"})
      */
@@ -54,19 +83,15 @@ class ReservationController extends AbstractController
         $reservation = new Reservation();
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
-        $User = $this->getDoctrine()
-            ->getRepository(User::class)
-            ->find(8);
         $transport = $this->getDoctrine()->getRepository(Transport::class)->find(1);
         if ($form->isSubmitted() && $form->isValid()) {
             $reservation->setEtat("En attent");
-            $reservation->setEtatGuide(1);
-            $reservation->setIdU($User);
+            $reservation->setIdU($this->getUser());
             $reservation->setIdTrasp($transport);
             $entityManager->persist($reservation);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_reservation_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('mes_reservation_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('reservation/new.html.twig', [
@@ -96,7 +121,7 @@ class ReservationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_reservation_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('mes_reservation_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('reservation/edit.html.twig', [
@@ -112,7 +137,33 @@ class ReservationController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $res = $em->getRepository(Reservation::class)->find($id);
-        $em->remove($res);
+        $em->persist($res);
+        $em->flush();
+        return $this->redirectToRoute('mes_reservation_index');
+    }
+
+
+    /**
+     * @Route("/accepter/{id}", name="reservation_accepter")
+     */
+    public function accepter($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $res = $em->getRepository(Reservation::class)->find($id);
+        $res->setEtat("accepter");
+        $em->flush();
+        return $this->redirectToRoute('app_reservation_index');
+    }
+
+
+    /**
+     * @Route("/refuser/{id}", name="reservation_refuser")
+     */
+    public function refuser($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $res = $em->getRepository(Reservation::class)->find($id);
+        $res->setEtat("refuser");
         $em->flush();
         return $this->redirectToRoute('app_reservation_index');
     }
