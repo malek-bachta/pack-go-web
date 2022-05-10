@@ -15,12 +15,6 @@ class RatingFormType extends AbstractType
     {
         $builder
             ->add('rate')
-            ->add('hotel', EntityType::class, [
-                'class' => Hotels::class,
-                'choice_label'=>'nomH',
-                'multiple'=>false,
-                'expanded'=>false,
-                ])
         ;
     }
 

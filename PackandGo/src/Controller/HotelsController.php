@@ -46,7 +46,7 @@ class HotelsController extends AbstractController
 
 
     /**
-     * @Route("/hotels/details/{idh}", name="details")
+     * @Route("/hotels/details/{idh}", name="detail")
      */
     public function details($idh, Request $req)
     {
@@ -57,6 +57,7 @@ class HotelsController extends AbstractController
         $form = $this->createForm(RatingFormType::class, $rating);
         $form->handleRequest($req);
         if ($form->isSubmitted() && $form->isValid()) {
+            $rating->setHotel($hotels);
             $em = $this->getDoctrine()->getManager();
             $em->persist($rating);
             $em->flush();
