@@ -67,7 +67,6 @@ class ServicesController extends AbstractController
         $repo=$this->getDoctrine()->getRepository(Services::class);
         $services=$repo->find($idS);
         $form=$this->createForm(ServiceFormType::class,$services);
-        $form->add('Update', SubmitType::class);
         $form->handleRequest($req);
         if ($form->isSubmitted()) {
             $em = $this->getDoctrine()->getManager();

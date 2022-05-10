@@ -96,7 +96,6 @@ class Hotels
 
     public function __construct()
     {
-        $this->ratings = new ArrayCollection();
     }
 
 
