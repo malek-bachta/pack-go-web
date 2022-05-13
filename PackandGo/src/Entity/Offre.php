@@ -15,7 +15,7 @@ class Offre
 {
     /**
      * @var int
-     *
+     * @Groups("post:read")
      * @ORM\Column(name="id_of", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -24,14 +24,14 @@ class Offre
 
     /**
      * @var string
-     *
+     * @Groups("post:read")
      * @ORM\Column(name="nom_offre", type="string", length=30, nullable=false)
      */
     private $nomOffre;
 
     /**
      * @var int
-     *
+     * @Groups("post:read")
      * @ORM\Column(name="budget", type="integer", nullable=false)
      */
     private $budget;

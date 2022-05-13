@@ -17,7 +17,7 @@ class Hotels
 {
     /**
      * @var int
-     *
+     * @Groups("post:read")
      * @ORM\Column(name="idH", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -26,7 +26,7 @@ class Hotels
 
     /**
      * @var int|null
-     *
+     * @Groups("post:read")
      * @ORM\Column(name="id_contactH", type="integer", nullable=true)
      */
     private $idContacth;
@@ -40,6 +40,7 @@ class Hotels
 
     /**
      * @var string
+     * @Groups("post:read")
      * @Assert\NotBlank(message="categorie est obligatoire")
      * @ORM\Column(name="categorie", type="string", length=24, nullable=false)
      */
@@ -47,6 +48,7 @@ class Hotels
 
     /**
      * @var string
+     * @Groups("post:read")
      * @Assert\NotBlank(message="adresse est obligatoire")
      * @ORM\Column(name="adresse", type="string", length=34, nullable=false)
      */
@@ -54,7 +56,7 @@ class Hotels
 
     /**
      * @var string
-     *
+     * @Groups("post:read")
      * @ORM\Column(name="email", type="string", length=255, nullable=false)
      * @Assert\Email(message="Type invalide")
      * @Assert\NotBlank(message="Email est obligatoire")
@@ -64,13 +66,14 @@ class Hotels
     /**
      * @var int
 
-     *
+     * @Groups("post:read")
      * @ORM\Column(name="telH", type="integer", nullable=false)
      */
     private $telh;
 
     /**
      * @var string
+     * @Groups("post:read")
      * @Assert\NotBlank
      * @ORM\Column(name="equipement", type="string", length=255, nullable=false)
      */
@@ -78,6 +81,7 @@ class Hotels
 
     /**
      * @var string|null
+     * @Groups("post:read")
      * @Assert\NotBlank
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
      */

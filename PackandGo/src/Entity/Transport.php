@@ -11,7 +11,7 @@ class Transport
 {
     /**
      * @var int
-     *
+     * @Groups("post:read")
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -20,6 +20,7 @@ class Transport
 
     /**
      * @var string
+     * @Groups("post:read")
      * @Assert\NotBlank
      * @ORM\Column(name="type", type="string", length=255, nullable=false)
      */
@@ -27,6 +28,7 @@ class Transport
 
     /**
      * @var string
+     * @Groups("post:read")
      * @Assert\NotBlank
      * @ORM\Column(name="nomagence", type="string", length=255, nullable=false)
      */
@@ -34,13 +36,14 @@ class Transport
 
     /**
      * @var float
-     *
+     * @Groups("post:read")
      * @ORM\Column(name="prix", type="float", precision=10, scale=0, nullable=false)
      */
     private $prix;
 
     /**
      * @var string
+     * @Groups("post:read")
      * @Assert\NotBlank
      * @ORM\Column(name="duree", type="string", length=255, nullable=false)
      */
@@ -48,6 +51,7 @@ class Transport
 
     /**
      * @var string
+     * @Groups("post:read")
      * @Assert\NotBlank
      * @ORM\Column(name="destination", type="string", length=255, nullable=false)
      */
