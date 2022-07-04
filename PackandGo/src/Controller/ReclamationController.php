@@ -79,7 +79,7 @@ class ReclamationController extends AbstractController
 
 
     function filterwords($text){
-        $filterWords = array('fuck', 'nike', 'pute','bitch');
+        $filterWords = array('fuck', 'shit', 'pute','bitch');
         $filterCount = sizeof($filterWords);
         for ($i = 0; $i < $filterCount; $i++) {
             $text = preg_replace_callback('/\b' . $filterWords[$i] . '\b/i', function($matches){return str_repeat('*', strlen($matches[0]));}, $text);
@@ -120,7 +120,7 @@ class ReclamationController extends AbstractController
      */
     public function show(Reclamation $reclamation): Response
     {
-        return $this->render('reclamation/show.html.twig', [
+        return $this->render('reclamation/MesPayment.html.twig', [
             'reclamation' => $reclamation,
         ]);
     }

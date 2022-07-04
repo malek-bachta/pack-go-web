@@ -1,0 +1,69 @@
+{% extends 'back.html.twig' %}
+
+{% block title %} List Reservation Hotels     <a href="{{ path('pdf') }}" class="btn btn-secondary" style="text-align: center !important;">Pdf</a>
+{% endblock %}
+
+{% block body %}
+    <br><br><br><br><br>
+    <br><br><br><br><br>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#rech tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    <input class="form-control" id="myInput" type="text" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Dated</th>
+                <th>Datef</th>
+                <th>EtatService</th>
+                <th>User</th>
+                <th>Etat</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody id="rech">
+        {% for reservationh in reservationhs %}
+            <tr>
+                <td>{{ reservationh.dated ? reservationh.dated|date('Y-m-d') : '' }}</td>
+                <td>{{ reservationh.datef ? reservationh.datef|date('Y-m-d') : '' }}</td>
+                {% if reservationh.etatService == 0 %}
+                <td>None</td>
+                {% elseif reservationh.etatService == 1 %}
+                    <td>All inclusive</td>
+                    {% else %}
+                        <td>All inclusive</td>
+                        {% endif %}
+
+                <td>{{ reservationh.idu.nomC }}</td>
+                <td>{{ reservationh.etat }}</td>
+                <td>
+                <td>
+                    {% if (reservationh.etat == "refuser" or reservationh.etat == "accepter" ) %}
+                    {% else %}
+                        <a href="{{ path('reservationH_accepter', {'id': reservationh.idreh}) }}" class="btn btn-secondary">Accepter</a>
+                        <a href="{{ path('reservationH_refuser', {'id': reservationh.idreh}) }}" class="btn btn-danger">Refuser</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reservationh_new') }}">Create new</a>
+{% endblock %}

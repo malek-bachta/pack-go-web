@@ -1,0 +1,29 @@
+{% extends 'front.html.twig' %}
+
+{% block title %} Mes Reservations Hotel{% endblock %}
+
+{% block body %}
+{% for r in reservations %}
+    <div class="services-box-1 wow fade-in-bottom" data-wow-duration="1.5s">
+        <div class="services-thumb">
+            <img src="{{ asset('front/assets/images/service-icons/s_icon_2.png') }}" alt="" draggable="false">
+        </div><!-- /.services-thumb -->
+        <h4>{{ r.idhotel.nomh }}</h4>
+        <p>
+            Date Début : {{ r.datef ? r.datef|date('Y-m-d') : '' }}<br>
+            Date Fin : {{ r.dated ? r.dated|date('Y-m-d') : '' }}<br>
+            Etat :{{ r.etat }}<br>
+            {% if r.etat == 'payer' %}
+            {% else %}
+            <a href="{{ path('app_reservationh_delete', {'id': r.idreh}) }} " class="btn btn-secondary">Delete</a>
+            <a href="{{ path('app_reservationh_edit', {'idreh': r.idreh}) }}" class="btn btn-danger">Edit</a><br>
+
+            <a href="{{ path('app_payment_new', {'id': r.idreh}) }}" class="btn btn-primary">Payer</a>
+                {% endif %}
+
+        </p>
+    </div>
+
+    {% endfor %}
+
+{% endblock %}

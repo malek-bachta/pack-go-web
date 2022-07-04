@@ -2,29 +2,24 @@
 
 {% block title %}New Reservation{% endblock %}
 
-{% block body %}
+                       {% block body %}
 
-    <section class="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 section-t8">
-                    <div class="row">
-                        <div class="col-md-7">
-                            {{ form_start(form) }}
+                             <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+                            {{ form_start(form, {'attr': {'id': 'form'}})}}
 
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <div class="form-group">
 
+                                         Date Debut :
                                         {{ form_widget(form.dateDeb, { 'attr': {'class': 'form-control rt-mb-30'} }) }}
                                         {{ form_errors(form.dateDeb) }}
-                                    </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <div class="form-group">
+                                         Date Fin :
                                         {{ form_widget(form.dateFin, { 'attr': {'class': 'form-control rt-mb-30'} }) }}
                                         {{ form_errors(form.dateFin) }}
-                                    </div>
                                 </div>
 
 
@@ -35,10 +30,56 @@
                             </div>
                             {{ form_end(form) }}
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
+    <script>
+        const form= document.getElementById('form');
+        const errorElement= document.getElementById('errorElement');
+        var now = new Date();
+        form.addEventListener('submit',(e)=> {
+            let message = [];
+
+
+
+            const year= document.getElementById('reservation_dateDeb_year').value;
+            const month= document.getElementById('reservation_dateDeb_month').value;
+            const day= document.getElementById('reservation_dateDeb_day').value;
+
+
+            var date= new Date(year,month,day)
+
+
+
+            const yearf= document.getElementById('reservation_dateFin_year').value;
+            const monthf= document.getElementById('reservation_dateFin_month').value;
+            const dayf= document.getElementById('reservation_dateFin_day').value;
+
+
+            var datef= new Date(yearf,monthf,dayf)
+
+
+
+
+            console.log('whyy'+date)
+
+            console.log(date , ' ', now)
+            if((date < now)){
+                swal("Oops...","Valider votre date ","error" );
+                message.push('Vérifier Votre date')
+            }
+            if ((date > datef)){
+
+                swal("Oops...","Valider votre date ","error" );
+                message.push('Vérifier Votre date')
+
+
+            }
+            console.log(message)
+            if(message.length> 0){
+                e.preventDefault();
+                errorElement.innerText = message.join(', ')
+            }
+        })
+    </script>
+
+
 {% endblock %}

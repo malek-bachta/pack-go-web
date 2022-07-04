@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TransportRepository")
  */
@@ -11,7 +13,7 @@ class Transport
 {
     /**
      * @var int
-     * @Groups("post:read")
+     * @Groups("post:read","post:reservation")
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")

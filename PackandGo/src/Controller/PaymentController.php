@@ -6,26 +6,86 @@ use App\Entity\Payment;
 use App\Entity\Reservationh;
 use App\Form\PaymentType;
 use Doctrine\ORM\EntityManagerInterface;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/payment")
+     * @Route("/payment")
  */
 class PaymentController extends AbstractController
 {
+
+
+    /**
+     * @Route("/pdfPayment/{id}", name="pdfpayment")
+     */
+    public function pdf($id)
+    {
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+        $em = $this->getDoctrine()->getManager();
+        $res = $em->getRepository(Payment::class)->find($id);
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('payment/pdfpayment.html.twig', [
+            'res' => $res
+        ]);
+
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => true
+        ]);
+    }
+
+
+
     /**
      * @Route("/", name="app_payment_index", methods={"GET"})
      */
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(EntityManagerInterface $entityManager, Request $request ,PaginatorInterface $paginator): Response
+    {
+        $donnees = $entityManager
+            ->getRepository(Payment::class)
+            ->findAll();
+
+        $payments = $paginator->paginate(
+            $donnees, // Requête contenant les données à paginer (ici nos articles)
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            3 // Nombre de résultats par page
+        );
+        return $this->render('payment/index.html.twig', [
+            'payments' => $payments,
+        ]);
+    }
+
+
+    /**
+     * @Route("/mesPyment", name="mes_payment_payment", methods={"GET"})
+     */
+    public function indexClient(EntityManagerInterface $entityManager, Request $request ,PaginatorInterface $paginator): Response
     {
         $payments = $entityManager
             ->getRepository(Payment::class)
             ->findAll();
 
-        return $this->render('payment/index.html.twig', [
+        return $this->render('payment/MesPayment.html.twig', [
             'payments' => $payments,
         ]);
     }
@@ -44,10 +104,13 @@ class PaymentController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $payment->setIdReservation($reservation);
+            $reservation->setEtat('payer');
+            $payment->setSomme(120);
+            $entityManager->persist($reservation);
             $entityManager->persist($payment);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_payment_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('mes_reservation_hotel', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('payment/new.html.twig', [
@@ -57,12 +120,16 @@ class PaymentController extends AbstractController
     }
 
     /**
-     * @Route("/{idP}", name="app_payment_show", methods={"GET"})
+     * @Route("/MesPayment", name="app_payment_show", methods={"GET"})
      */
-    public function show(Payment $payment): Response
+    public function show(Payment $payment, EntityManagerInterface $entityManager): Response
     {
-        return $this->render('payment/show.html.twig', [
-            'payment' => $payment,
+
+        $payments = $entityManager
+            ->getRepository(Payment::class)
+            ->findAll();
+        return $this->render('payment/MesPayment.html.twig', [
+            'payment' => $payments,
         ]);
     }
 
@@ -97,4 +164,7 @@ class PaymentController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('mes_reservation_index');
     }
+
+
+
 }

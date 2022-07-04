@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ReservationController extends AbstractController
 {
     /**
-     * @Route("/a", name="app_reservation_index")
+     * @Route("/", name="app_reservation_index")
      */
     public function index(EntityManagerInterface $entityManager): Response
     {
@@ -105,7 +105,7 @@ class ReservationController extends AbstractController
      */
     public function show(Reservation $reservation): Response
     {
-        return $this->render('reservation/show.html.twig', [
+        return $this->render('reservation/MesPayment.html.twig', [
             'reservation' => $reservation,
         ]);
     }

@@ -35,7 +35,7 @@
                     {% endif %}
                     <td>
                     {% if reclamation.etat == "en attent" %}
-                    <a href="{{ path('reclamation_traiter', {'id': reclamation.idReclamation}) }}" class="btn btn-secondary">Traité</a>
+                    <a href="{{ path('reclamation_traiter', {'id': reclamation.idReclamation}) }}" class="btn btn-secondary">Traiter</a>
                     {% else %}
                         {% endif %}
                 </td>

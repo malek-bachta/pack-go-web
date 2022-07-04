@@ -1,0 +1,24 @@
+{% extends 'front.html.twig' %}
+
+{% block title %} Mes Payments Hotel{% endblock %}
+
+{% block body %}
+    {% for r in payments %}
+        <div class="services-box-1 wow fade-in-bottom" data-wow-duration="1.5s">
+            <div class="services-thumb">
+                <img src="{{ asset('front/assets/images/service-icons/s_icon_2.png') }}" alt="" draggable="false">
+            </div><!-- /.services-thumb -->
+            <h4>{{ r.idReservation.idhotel.nomh }}</h4>
+            <p>
+                Montant : {{ r.somme }}<br>
+                Type : {{ r.type }}<br>
+
+                <a href="{{ path('pdfpayment', {'id': r.idP}) }}" class="btn btn-danger">Pdf</a>
+
+            </p>
+
+        </div>
+
+    {% endfor %}
+
+{% endblock %}

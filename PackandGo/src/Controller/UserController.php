@@ -32,25 +32,29 @@ class UserController extends AbstractController
     /**
      * @Route("/blocker/{id}", name="blocker")
      */
-    public function blocke($id, \Swift_Mailer $mailer)
+    public function blocke($id)
     {
         $em = $this->getDoctrine()->getManager();
         $res = $em->getRepository(User::class)->find($id);
         $res->setIsActive(0);
         $em->persist($res);
         $em->flush();
+        return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+
     }
 
     /**
      * @Route("/deblocker/{id}", name="deblocker")
      */
-    public function deblocker($id, \Swift_Mailer $mailer)
+    public function deblocker($id)
     {
         $em = $this->getDoctrine()->getManager();
         $res = $em->getRepository(User::class)->find($id);
         $res->setIsActive(1);
         $em->persist($res);
         $em->flush();
+        return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+
     }
 
     /**
@@ -80,7 +84,7 @@ class UserController extends AbstractController
      */
     public function show(User $user): Response
     {
-        return $this->render('user/show.html.twig', [
+        return $this->render('user/MesPayment.html.twig', [
             'user' => $user,
         ]);
     }

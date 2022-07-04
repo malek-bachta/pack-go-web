@@ -1,0 +1,24 @@
+{% extends 'front.html.twig' %}
+
+{% block title %} Mes Reservations Transport{% endblock %}
+
+{% block body %}
+{% for r in reservations %}
+    <div class="services-box-1 wow fade-in-bottom" data-wow-duration="1.5s">
+        <div class="services-thumb">
+            <img src="{{ asset('front/assets/images/service-icons/s_icon_2.png') }}" alt="" draggable="false">
+        </div><!-- /.services-thumb -->
+        <h4>{{ r.idTrasp.nomagence }}</h4>
+        <p>
+            Date Début : {{ r.dateDeb ? r.dateDeb|date('Y-m-d') : '' }}<br>
+            Date Fin : {{ r.dateFin ? r.dateFin|date('Y-m-d') : '' }}<br><br>
+            Etat : {{ r.etat }}
+            <a href="{{ path('reservation_delete', {'id': r.idRes}) }} " class="btn btn-secondary">Delete</a>
+            <a href="{{ path('app_reservation_edit', {'idRes': r.idRes}) }}" class="btn btn-danger">Edit</a>
+
+        </p>
+    </div>
+
+    {% endfor %}
+
+{% endblock %}

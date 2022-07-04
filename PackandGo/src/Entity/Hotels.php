@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 
 /**
@@ -17,22 +18,25 @@ class Hotels
 {
     /**
      * @var int
-     * @Groups("post:read")
+     *
      * @ORM\Column(name="idH", type="integer", nullable=false)
      * @ORM\Id
+     * @Groups("post:hotel")
+
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idH;
 
     /**
      * @var int|null
-     * @Groups("post:read")
+     * @Groups("post:hotel")
      * @ORM\Column(name="id_contactH", type="integer", nullable=true)
      */
     private $idContacth;
 
     /**
      * @var string
+     * @Groups("post:hotel")
      * @Assert\NotBlank(message="Hotel nom est obligatoire")
      * @ORM\Column(name="nomH", type="string", length=255, nullable=false)
      */
@@ -40,7 +44,7 @@ class Hotels
 
     /**
      * @var string
-     * @Groups("post:read")
+     * @Groups("post:hotel")
      * @Assert\NotBlank(message="categorie est obligatoire")
      * @ORM\Column(name="categorie", type="string", length=24, nullable=false)
      */
@@ -48,7 +52,7 @@ class Hotels
 
     /**
      * @var string
-     * @Groups("post:read")
+     * @Groups("post:hotel")
      * @Assert\NotBlank(message="adresse est obligatoire")
      * @ORM\Column(name="adresse", type="string", length=34, nullable=false)
      */
@@ -56,7 +60,7 @@ class Hotels
 
     /**
      * @var string
-     * @Groups("post:read")
+     * @Groups("post:hotel")
      * @ORM\Column(name="email", type="string", length=255, nullable=false)
      * @Assert\Email(message="Type invalide")
      * @Assert\NotBlank(message="Email est obligatoire")
@@ -66,14 +70,14 @@ class Hotels
     /**
      * @var int
 
-     * @Groups("post:read")
+     * @Groups("post:hotel")
      * @ORM\Column(name="telH", type="integer", nullable=false)
      */
     private $telh;
 
     /**
      * @var string
-     * @Groups("post:read")
+     * @Groups("post:hotel")
      * @Assert\NotBlank
      * @ORM\Column(name="equipement", type="string", length=255, nullable=false)
      */
@@ -81,7 +85,7 @@ class Hotels
 
     /**
      * @var string|null
-     * @Groups("post:read")
+     * @Groups("post:hotel")
      * @Assert\NotBlank
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
@@ -89,6 +93,7 @@ class Hotels
 
     /**
      * @ORM\ManyToOne(targetEntity=Services::class, inversedBy="hotels")
+
      * @ORM\JoinColumn(nullable=false, name="Service", referencedColumnName="idS")
      */
     private $service;
@@ -224,7 +229,7 @@ class Hotels
     /**
      * @return Collection<int, Rating>
      */
-    public function getRatings(): Collection
+  /* public function getRatings(): Collection
     {
         return $this->ratings;
     }
@@ -253,7 +258,7 @@ class Hotels
 
 
 
-
+*/
 
 
 

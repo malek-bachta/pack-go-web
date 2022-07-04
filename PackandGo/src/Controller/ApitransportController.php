@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Guide;
 use App\Entity\Transport;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -52,7 +53,9 @@ class ApitransportController extends AbstractController
         $transport->setPrix($request->get('prix'));
         $transport->setDuree($request->get('duree'));
         $transport->setDestination($request->get('destination'));
-
+        $repo=$this->getDoctrine()->getRepository(Guide::class);
+        $guide=$repo->find(1);
+        $transport->setGuide($guide);
 
         $em->persist($transport);
         $em->flush();

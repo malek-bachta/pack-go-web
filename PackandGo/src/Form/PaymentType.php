@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Form;
+
+use App\Entity\Payment;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
+class PaymentType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder
+            ->add('type', ChoiceType::class, [
+                'choices'  => [
+                    'Par cheque' => 'Par cheque',
+                    'Sur Place' => 'Sur Place',
+                    'En ligne' => 'En ligne',
+                ],
+            ]);
+        ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => Payment::class,
+        ]);
+    }
+}

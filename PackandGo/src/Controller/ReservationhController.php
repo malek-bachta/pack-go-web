@@ -6,6 +6,8 @@ use App\Entity\Hotels;
 use App\Entity\Reservationh;
 use App\Form\ReservationhType;
 use Doctrine\ORM\EntityManagerInterface;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +18,39 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ReservationhController extends AbstractController
 {
+
+    /**
+     * @Route("/pdf", name="pdf")
+     */
+    public function pdf()
+    {
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+        $em = $this->getDoctrine()->getManager();
+        $res = $em->getRepository(Reservationh::class)->findAll();
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('reservationh/pdf.html.twig', [
+            'reservationhs' => $res
+        ]);
+
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => true
+        ]);
+    }
 
     /**
          * @Route("/mesReservationHotel", name="mes_reservation_hotel")
@@ -58,7 +93,7 @@ class ReservationhController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $reservationh->setIdu($this->getUser());
-            $reservationh->setIdhotel($hotel);
+            $reservationh->setIdh($hotel);
             $reservationh->setEtat("En Attent");
             $reservationh->setEtatService(1);
 
@@ -79,7 +114,7 @@ class ReservationhController extends AbstractController
      */
     public function show(Reservationh $reservationh): Response
     {
-        return $this->render('reservationh/show.html.twig', [
+        return $this->render('reservationh/MesPayment.html.twig', [
             'reservationh' => $reservationh,
         ]);
     }
@@ -141,6 +176,8 @@ class ReservationhController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('app_reservationh_index');
     }
+
+
 
 
 

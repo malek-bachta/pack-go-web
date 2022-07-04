@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Payment
  *
- * @ORM\Table(name="payment", indexes={@ORM\Index(name="id_hotel", columns={"id_hotel"}), @ORM\Index(name="id_user", columns={"id_user"})})
+ * @ORM\Table(name="payment")
  * @ORM\Entity
  */
 class Payment
@@ -36,24 +36,64 @@ class Payment
     private $somme;
 
     /**
-     * @var \User
+     * @var \Reservationh
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="Reservationh")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id_c")
+     *   @ORM\JoinColumn(name="id_reserv", referencedColumnName="idreh")
      * })
      */
-    private $idUser;
+    private $idReservation;
 
-    /**
-     * @var \Hotels
-     *
-     * @ORM\ManyToOne(targetEntity="Hotels")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_hotel", referencedColumnName="idH")
-     * })
-     */
-    private $idHotel;
+
+
+    public function getIdP(): ?int
+    {
+        return $this->idP;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getSomme(): ?float
+    {
+        return $this->somme;
+    }
+
+    public function setSomme(float $somme): self
+    {
+        $this->somme = $somme;
+
+        return $this;
+    }
+
+
+    public function getIdReservation(): ?Reservationh
+    {
+        return $this->idReservation;
+    }
+
+
+    public function setIdReservation(?Reservationh $idReservation): void
+    {
+        $this->idReservation = $idReservation;
+    }
+
+
+
+
+
+
+
 
 
 }

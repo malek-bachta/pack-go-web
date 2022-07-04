@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 use App\Entity\Rating;
+use App\Entity\User;
 use App\Form\HotelFormType;
 use App\Form\RatingFormType;
 use App\Repository\HotelsRepository;
@@ -12,12 +13,17 @@ use Doctrine\ORM\EntityManagerInterface;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Hotels;
 use App\Entity\Services;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\SerializerInterface;
 
 
 class HotelsController extends AbstractController
@@ -94,23 +100,10 @@ class HotelsController extends AbstractController
             'list' => $liste,
         ]);
     }
-    /**
-     * @Route("/hotels/show",name="searchname")
-     */
-    public function SearchHotelByName(Request $request)
-    {
-
-        $data = $request->get('search');
-        $repository = $this->getDoctrine()->getRepository(Hotels::class);
-        $hotel = $repository->findBy(['nomH' => $data]);
-        return $this->render('hotels/hoteldetails.html.twig', [
-            'hotel' => $hotel
-        ]);
-    }
 
 
     /**
-     * @Route("/hotels/add", name="add_hotel")
+     * @Route("/hotels/addd", name="addd_hotel")
      */
     public function addHotel(Request $req)
     {
@@ -145,7 +138,7 @@ class HotelsController extends AbstractController
     }
 
     /**
-     * @Route("/hotels/update/{idh}", name="update_hotel")
+     * @Route("/hotels/updatee/{idh}", name="updatee_hotel")
      */
     public function updateHotel($idh, Request $req): Response
     {
@@ -171,7 +164,7 @@ class HotelsController extends AbstractController
 
 
     /**
-     * @Route("/hotels/delete/{idh}", name="delete_hotel")
+     * @Route("/hotels/deletee/{idh}", name="deletee_hotel")
      */
     public function deleteHotel($idh): Response
     {
@@ -186,7 +179,7 @@ class HotelsController extends AbstractController
 
 
     /**
-     * @Route("/hotels/pdf/{idh}", name="pdf" )
+     * @Route("/hotels/pdf/{idh}", name="pdff" )
      */
     public function pdf($idh, HotelsRepository $repo): Response
     {

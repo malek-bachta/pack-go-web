@@ -1,0 +1,89 @@
+{% extends 'front.html.twig' %}
+
+{% block title %}New Reservation Hotel{% endblock %}
+
+{% block body %}
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {{ form_start(form, {'attr': {'id': 'form'}})}}
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            Date Debut :
+            {{ form_widget(form.dated, { 'attr': {'class': 'form-control rt-mb-30'} }) }}
+            {{ form_errors(form.dated) }}
+        </div>
+        <div class="col-md-6 mb-3">
+            Date Fin :
+            {{ form_widget(form.datef, { 'attr': {'class': 'form-control rt-mb-30'} }) }}
+            {{ form_errors(form.datef) }}
+        </div>
+
+        <div class="col-md-6 mb-3">
+            Service :
+            {{ form_widget(form.etatService, { 'attr': {'class': 'form-control rt-mb-30'} }) }}
+            {{ form_errors(form.etatService) }}
+        </div>
+
+
+
+
+        <div class="col-md-12 text-center">
+            <input type="submit" value="Enregistrer" class="btn btn-success" formnovalidate />
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+
+    <script>
+        const form= document.getElementById('form');
+        const errorElement= document.getElementById('errorElement');
+        var now = new Date();
+        form.addEventListener('submit',(e)=> {
+            let message = [];
+
+
+
+            const year= document.getElementById('reservationh_dated_year').value;
+            const month= document.getElementById('reservationh_dated_month').value;
+            const day= document.getElementById('reservationh_dated_day').value;
+
+
+            var date= new Date(year,month,day)
+
+
+
+            const yearf= document.getElementById('reservationh_datef_year').value;
+            const monthf= document.getElementById('reservationh_datef_month').value;
+            const dayf= document.getElementById('reservationh_datef_day').value;
+
+
+            var datef= new Date(yearf,monthf,dayf)
+
+
+
+
+            console.log('whyy'+date)
+
+            console.log(date , ' ', now)
+            if((date < now)){
+                swal("Oops...","Valider votre date ","error" );
+                message.push('Vérifier Votre date')
+            }
+            if ((date > datef)){
+
+                swal("Oops...","Valider votre date ","error" );
+                message.push('Vérifier Votre date')
+
+
+            }
+            console.log(message)
+            if(message.length> 0){
+                e.preventDefault();
+                errorElement.innerText = message.join(', ')
+            }
+        })
+    </script>
+
+{% endblock %}

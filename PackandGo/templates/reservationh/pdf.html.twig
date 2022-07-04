@@ -1,0 +1,33 @@
+<html>
+<body>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Dated</th>
+            <th>Datef</th>
+            <th>EtatService</th>
+            <th>User</th>
+            <th>Etat</th>
+        </tr>
+        </thead>
+        <tbody id="rech">
+        {% for reservationh in reservationhs %}
+            <tr>
+                <td>{{ reservationh.dated ? reservationh.dated|date('Y-m-d') : '' }}</td>
+                <td>{{ reservationh.datef ? reservationh.datef|date('Y-m-d') : '' }}</td>
+                {% if reservationh.etatService == 0 %}
+                    <td>None</td>
+                {% elseif reservationh.etatService == 1 %}
+                    <td>All inclusive</td>
+                {% else %}
+                    <td>All inclusive</td>
+                {% endif %}
+
+                <td>{{ reservationh.idu.nomC }}</td>
+                <td>{{ reservationh.etat }}</td>
+        {% endfor %}
+
+
+</body>
+</html>

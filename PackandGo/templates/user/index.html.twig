@@ -1,0 +1,66 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <h1>User List</h1>
+    <br><br><br><br><br>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#rech tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    <input class="form-control" id="myInput" type="text" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>TelC</th>
+                <th>AgeC</th>
+                <th>NomC</th>
+                <th>PrenomC</th>
+                <th>Email</th>
+                <th>NumPass</th>
+                <th>IsActive</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody id="rech">
+        {% for user in users %}
+            <tr>
+                <td>{{ user.telC }}</td>
+                <td>{{ user.ageC }}</td>
+                <td>{{ user.nomC }}</td>
+                <td>{{ user.prenomC }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.numPass }}</td>
+                <td>{{ user.isEnabled ? 'Yes' : 'No' }}</td>
+                {% if user.isEnabled %}
+                <td>
+                    <a href="{{ path('blocker', {'id': user.idC}) }}" class="btn btn-danger">Blocker</a>
+                </td>
+                {% else %}
+                    <td>
+                        <a href="{{ path('deblocker', {'id': user.idC}) }}" class="btn btn-primary">Deloquer</a>
+                    </td>
+                    {% endif %}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_user_new') }}">Create new</a>
+{% endblock %}

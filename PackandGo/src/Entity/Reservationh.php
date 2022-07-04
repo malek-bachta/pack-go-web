@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Reservationh
@@ -17,41 +18,52 @@ class Reservationh
      *
      * @ORM\Column(name="idreh", type="integer", nullable=false)
      * @ORM\Id
+     * @Groups ("post:reservationh")
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idreh;
 
     /**
      * @var \DateTime
-     *
+     * @Groups ("post:reservationh")
      * @ORM\Column(name="dated", type="date", nullable=false)
      */
     private $dated;
 
     /**
      * @var \DateTime
-     *
+     * @Groups ("post:reservationh")
      * @ORM\Column(name="datef", type="date", nullable=false)
      */
     private $datef;
 
     /**
      * @var int
-     *
+     * @Groups ("post:reservationh")
      * @ORM\Column(name="etat_service", type="integer", nullable=false)
      */
     private $etatService;
 
     /**
      * @var string
-     *
+     * @Groups ("post:reservationh")
      * @ORM\Column(name="etat", type="string", length=255, nullable=false)
      */
     private $etat;
 
     /**
+     * @var \Hotels
+     * @Groups ("post:reservationh")
+     * @ORM\ManyToOne(targetEntity="Hotels")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idhotel", referencedColumnName="idH")
+     * })
+     */
+    private $idhotel;
+
+    /**
      * @var \User
-     *
+     * @Groups ("post:reservationh")
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idu", referencedColumnName="id_c")
@@ -59,15 +71,82 @@ class Reservationh
      */
     private $idu;
 
-    /**
-     * @var \Hotels
-     *
-     * @ORM\ManyToOne(targetEntity="Hotels")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idhotel", referencedColumnName="idH")
-     * })
-     */
-    private $idhotel;
+    public function getIdreh(): ?int
+    {
+        return $this->idreh;
+    }
+
+    public function getDated(): ?\DateTimeInterface
+    {
+        return $this->dated;
+    }
+
+    public function setDated(\DateTimeInterface $dated): self
+    {
+        $this->dated = $dated;
+
+        return $this;
+    }
+
+    public function getDatef(): ?\DateTimeInterface
+    {
+        return $this->datef;
+    }
+
+    public function setDatef(\DateTimeInterface $datef): self
+    {
+        $this->datef = $datef;
+
+        return $this;
+    }
+
+    public function getEtatService(): ?int
+    {
+        return $this->etatService;
+    }
+
+    public function setEtatService(int $etatService): self
+    {
+        $this->etatService = $etatService;
+
+        return $this;
+    }
+
+    public function getEtat(): ?string
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(string $etat): self
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getIdhotel(): ?Hotels
+    {
+        return $this->idhotel;
+    }
+
+    public function setIdhotel(?Hotels $idhotel): self
+    {
+        $this->idhotel = $idhotel;
+
+        return $this;
+    }
+
+    public function getIdu(): ?User
+    {
+        return $this->idu;
+    }
+
+    public function setIdu(?User $idu): self
+    {
+        $this->idu = $idu;
+
+        return $this;
+    }
 
 
 }

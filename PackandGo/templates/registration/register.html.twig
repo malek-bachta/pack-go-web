@@ -3,14 +3,58 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
+    {{ form_start(registrationForm, { 'attr': {'class': 'rt-form rt-line-form'} })  }}
 
-        <button type="submit" class="btn">Register</button>
+
+<div class="row">
+    <div class="">
+         Email :
+        {{ form_widget(registrationForm.email, { 'attr': {'class': 'form-control rt-mb-30'} }) }}
+        {{ form_errors(registrationForm.email) }}
+    </div>
+    <div class="">
+        Password :
+        {{ form_widget(registrationForm.plainPassword, { 'attr': {'class': 'form-control rt-mb-30'} }) }}
+        {{ form_errors(registrationForm.plainPassword) }}
+    </div>
+
+    <div class="">
+        Age :
+        {{ form_widget(registrationForm.age_c, { 'attr': {'class': 'form-control rt-mb-30'} }) }}
+        {{ form_errors(registrationForm.age_c) }}
+    </div>
+
+
+    <div class="">
+        Nom :
+        {{ form_widget(registrationForm.nom_c, { 'attr': {'class': 'form-control rt-mb-30'} }) }}
+        {{ form_errors(registrationForm.nom_c) }}
+    </div>
+
+
+    <div class="">
+        Prenom :
+        {{ form_widget(registrationForm.prenom_c, { 'attr': {'class': 'form-control rt-mb-30'} }) }}
+        {{ form_errors(registrationForm.prenom_c) }}
+    </div>
+
+
+    <div class="">
+        Num Passport :
+        {{ form_widget(registrationForm.num_pass, { 'attr': {'class': 'form-control rt-mb-30'} }) }}
+        {{ form_errors(registrationForm.num_pass) }}
+    </div>
+
+
+    <div class="">
+        Num Téléphone :
+        {{ form_widget(registrationForm.tel_c, { 'attr': {'class': 'form-control rt-mb-30'} }) }}
+        {{ form_errors(registrationForm.tel_c) }}
+    </div>
+
+    <div class="">
+    <button type="submit" class="rt-btn rt-gradient pill text-uppercase rt-mb-30" formnovalidate >Register</button>
+    </div>
     {{ form_end(registrationForm) }}
 {% endblock %}

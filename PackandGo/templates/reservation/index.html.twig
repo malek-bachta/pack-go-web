@@ -1,15 +1,17 @@
 {% extends 'back.html.twig' %}
 
-{% block title %} Les Reservations{% endblock %}
+{% block title %} Les Reservations Transport{% endblock %}
 
 {% block body %}
+    <br><br><br><br><br>
 
     <table class="table">
         <thead>
             <tr>
-                <th>DateDeb</th>
                 <th>DateFin</th>
-                <th>EtatGuide</th>
+                <th>DateDeb</th>
+                <th>Guide</th>
+                <th>User</th>
                 <th>Etat</th>
                 <th>actions</th>
             </tr>
@@ -17,14 +19,25 @@
         <tbody>
         {% for reservation in reservations %}
             <tr>
-                <td>{{ reservation.dateDeb ? reservation.dateDeb|date('Y-m-d') : '' }}</td>
                 <td>{{ reservation.dateFin ? reservation.dateFin|date('Y-m-d') : '' }}</td>
-                <td>{{ reservation.etatGuide }}</td>
+                <td>{{ reservation.dateDeb ? reservation.dateDeb|date('Y-m-d') : '' }}</td>
+                {% if  reservation.etatGuide == 0  %}
+                <td>None</td>
+                {% elseif reservation.etatGuide == 1  %}
+                <td>Chaffeur</td>
+                {% else %}
+                    <td>
+                        Guide Touristique
+                    </td>
+                    {% endif %}
+                <td>{{ reservation.idU.nomC }}</td>
                 <td>{{ reservation.etat }}</td>
-                <td>
-                    <a href="{{ path('reservation_delete', {'id': reservation.idRes}) }}">Delete</a>
-                    <a href="{{ path('app_reservation_edit', {'idRes': reservation.idRes}) }}">edit</a>
-                </td>
+                <td> {% if (reservation.etat == "refuser" or reservation.etat == "accepter" ) %}
+                    {% else %}
+                    <a href="{{ path('reservation_accepter', {'id': reservation.idRes}) }}" class="btn btn-secondary">Accepter</a>
+                    <a href="{{ path('reservation_refuser', {'id': reservation.idRes}) }}" class="btn btn-danger">Refuser</a>
+                    {% endif %}
+                        </td>
             </tr>
         {% else %}
             <tr>

@@ -50,16 +50,16 @@
                                         <td>{{ h.email }}</td>
                                         <td>{{ h.telh }}</td>
                                         <td>{{ h.equipement }}</td>
-                                        <td>{{ h.image }}</td>
+                                        <td> {{ asset('uploads/' ~ h.image) }} </td>
                                         <td>
                                             <div class="dropdown">
                                                 <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">
                                                     <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="{{ path('update_hotel', {'idh':h.idh}) }}">Edit</a>
-                                                    <a class="dropdown-item" href="{{ path('delete_hotel', {'idh':h.idh}) }}">Delete</a>
-                                                    <a class="dropdown-item" href="{{ path('pdf', {'idh':h.idh}) }}">Print</a>
+                                                    <a class="dropdown-item" href="{{ path('updatee_hotel', {'idh':h.idh}) }}">Edit</a>
+                                                    <a class="dropdown-item" href="{{ path('deletee_hotel', {'idh':h.idh}) }}">Delete</a>
+                                                    <a class="dropdown-item" href="{{ path('pdff', {'idh':h.idh}) }}">Print</a>
                                                 </div>
                                             </div>
                                         </td>
